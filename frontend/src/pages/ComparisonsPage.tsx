@@ -14,9 +14,10 @@ import {
   AlertCircle,
   TrendingUp,
 } from 'lucide-react';
+import type { Page } from '../App';
 
 /* ---------- Types ---------- */
-interface Urun {
+export interface Urun {
   id: number;
   link: string;
   urun_adi: string;
@@ -158,7 +159,7 @@ function ComparePanel({
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-2">
                         {u.gorsel_url ? (
-                          <img src={u.gorsel_url} alt="" className="w-8 h-8 rounded-lg object-cover flex-shrink-0 bg-slate-100" />
+                          <img src={u.gorsel_url} alt="" className="w-8 h-8 rounded-lg object-contain flex-shrink-0 bg-slate-100" />
                         ) : (
                           <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0">
                             <Package size={14} className="text-slate-400" />
@@ -202,18 +203,21 @@ function UrunKarti({
   isSelected,
   onToggle,
   canAdd,
+  onCardClick,
 }: {
   urun: Urun;
   isSelected: boolean;
   onToggle: () => void;
   canAdd: boolean;
+  onCardClick: () => void;
 }) {
   const rating = parseRating(urun.yorum_puani);
   const price = parsePriceTRY(urun.fiyat);
 
   return (
     <div
-      className={`relative bg-white rounded-2xl border transition-all duration-200 overflow-hidden group
+      onClick={onCardClick}
+      className={`cursor-pointer relative bg-white rounded-2xl border transition-all duration-200 overflow-hidden group
         ${isSelected
           ? 'border-teal-400 shadow-lg shadow-teal-100 ring-2 ring-teal-400/30'
           : 'border-slate-200 hover:border-slate-300 hover:shadow-md shadow-sm'
@@ -225,7 +229,7 @@ function UrunKarti({
           <img
             src={urun.gorsel_url}
             alt={urun.urun_adi}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full p-2 object-contain group-hover:scale-105 transition-transform duration-300"
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = 'none';
             }}
@@ -243,7 +247,10 @@ function UrunKarti({
         </div>
         {/* Seç butonu */}
         <button
-          onClick={onToggle}
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggle();
+          }}
           disabled={!canAdd && !isSelected}
           className={`absolute top-2 right-2 w-7 h-7 rounded-full flex items-center justify-center transition-all
             ${isSelected
@@ -298,7 +305,13 @@ function UrunKarti({
 }
 
 /* ---------- Main Page ---------- */
-export default function ComparisonsPage() {
+export default function ComparisonsPage({ 
+  onNavigate,
+  onProductSelect
+}: { 
+  onNavigate: (page: Page) => void;
+  onProductSelect?: (urun: Urun) => void;
+}) {
   const [kategoriler, setKategoriler] = useState<string[]>([]);
   const [aktifKategori, setAktifKategori] = useState<string>('Tümü');
   const [urunler, setUrunler] = useState<Urun[]>([]);
@@ -521,6 +534,7 @@ export default function ComparisonsPage() {
                 isSelected={selectedIds.includes(urun.id)}
                 onToggle={() => toggleSelect(urun)}
                 canAdd={selectedIds.length < 3}
+                onCardClick={() => onProductSelect?.(urun)}
               />
             ))}
           </div>

@@ -1,272 +1,236 @@
-import { MoreHorizontal, Download, TrendingUp, ShoppingCart, Building2, Globe } from 'lucide-react';
+import { ShoppingCart, Building2, Globe, Heart, TrendingDown, DollarSign, Star, Award, AlertCircle } from 'lucide-react';
+import type { Urun } from './ComparisonsPage';
 
-interface Commodity {
-  name: string;
-  price: string;
-  unit: string;
-  popularity: number;
-  buyers: string;
-  flag: string;
-  country: string;
-  image: string;
+interface MarketsPageProps {
+  urun: Urun | null;
 }
 
-interface Platform {
-  name: string;
-  type: string;
-  buyers: number;
-  icon: string;
-  barColor: string;
-  barWidth: string;
+const exchangeRates: Record<string, number> = {
+  '$': 32.5,
+  '£': 41.2,
+  '€': 35.1,
+  '₺': 1,
+};
+
+function getSellerIcon(icon: string) {
+  switch (icon) {
+    case 'amazon': return <ShoppingCart size={16} className="text-amber-500" />;
+    case 'alibaba': return <Building2 size={16} className="text-orange-500" />;
+    case 'tr': return <Award size={16} className="text-red-500" />;
+    default: return <Globe size={16} className="text-blue-500" />;
+  }
 }
 
-interface TradeMetric {
-  country: string;
-  flag: string;
-  primaryExport: string;
-  importTariff: string;
-  shippingDays: string;
-  satisfaction: number;
-  satisfactionColor: string;
-}
+export default function MarketsPage({ urun }: MarketsPageProps) {
+  if (!urun) {
+    return (
+      <div className="p-8 max-w-7xl mx-auto flex flex-col items-center justify-center min-h-[60vh] text-center">
+        <AlertCircle size={48} className="text-slate-300 mb-4" />
+        <h2 className="text-xl font-semibold text-slate-800 mb-2">Ürün Seçilmedi</h2>
+        <p className="text-slate-500">
+          Lütfen Karşılaştırmalar sayfasından analiz etmek istediğiniz bir ürünü seçin.
+        </p>
+      </div>
+    );
+  }
 
-const commodities: Commodity[] = [
-  {
-    name: 'Premium İpek',
-    price: '$45,00',
-    unit: 'yard',
-    popularity: 72,
-    buyers: '5.200',
-    flag: '🇨🇳',
-    country: 'ÇİN',
-    image: 'https://images.pexels.com/photos/4464484/pexels-photo-4464484.jpeg?auto=compress&cs=tinysrgb&w=80',
-  },
-  {
-    name: 'Sızma Zeytinyağı',
-    price: '$18,50',
-    unit: 'L',
-    popularity: 60,
-    buyers: '3.800',
-    flag: '🇬🇷',
-    country: 'YUN',
-    image: 'https://images.pexels.com/photos/33783/olive-oil-salad-dressing-cooking-olive.jpg?auto=compress&cs=tinysrgb&w=80',
-  },
-  {
-    name: 'Çeşitli Baharatlar',
-    price: '$22,00',
-    unit: 'kg',
-    popularity: 85,
-    buyers: '4.100',
-    flag: '🇮🇳',
-    country: 'HİN',
-    image: 'https://images.pexels.com/photos/1340116/pexels-photo-1340116.jpeg?auto=compress&cs=tinysrgb&w=80',
-  },
-];
+  // Generate dynamic sellers based on the selected product
+  const basePriceStr = urun.fiyat.replace(/[^0-9.,]/g, '').replace(',', '.');
+  const basePrice = parseFloat(basePriceStr) || 1000;
+  
+  // Extract rating or default to 4.5
+  const ratingMatch = urun.yorum_puani?.match(/[\d.]+/);
+  const baseRating = ratingMatch ? parseFloat(ratingMatch[0]) : 4.5;
 
-const platforms: Platform[] = [
-  { name: 'Amazon', type: 'B2C Perakende', buyers: 12450, icon: 'amazon', barColor: 'bg-teal-500', barWidth: 'w-full' },
-  { name: 'Alibaba', type: 'Toptan Satış', buyers: 8900, icon: 'alibaba', barColor: 'bg-teal-400', barWidth: 'w-4/5' },
-  { name: 'TradeDirect', type: 'Kurumsal', buyers: 3200, icon: 'trade', barColor: 'bg-slate-300', barWidth: 'w-2/5' },
-];
+  const sellers = [
+    {
+      name: 'Resmi Satıcı (Yurt İçi)',
+      type: 'Yurt İçi',
+      price: basePrice,
+      currency: '₺',
+      likes: Math.floor(Math.random() * 5000) + 500,
+      rating: baseRating,
+      icon: 'tr',
+    },
+    {
+      name: 'Amazon',
+      type: 'Yurt Dışı',
+      price: parseFloat(((basePrice / exchangeRates['$']) * 0.92).toFixed(2)), // ~8% cheaper
+      currency: '$',
+      likes: Math.floor(Math.random() * 10000) + 1000,
+      rating: Math.min(5, baseRating + 0.2),
+      icon: 'amazon',
+    },
+    {
+      name: 'Alibaba',
+      type: 'Yurt Dışı',
+      price: parseFloat(((basePrice / exchangeRates['$']) * 0.85).toFixed(2)), // ~15% cheaper
+      currency: '$',
+      likes: Math.floor(Math.random() * 20000) + 2000,
+      rating: Math.max(1, baseRating - 0.3),
+      icon: 'alibaba',
+    }
+  ];
 
-const tradeMetrics: TradeMetric[] = [
-  {
-    country: 'Çin',
-    flag: '🇨🇳',
-    primaryExport: 'İpek, Elektronik',
-    importTariff: '%12,5',
-    shippingDays: '14-21',
-    satisfaction: 8.4,
-    satisfactionColor: 'bg-slate-100 text-slate-600',
-  },
-  {
-    country: 'Yunanistan',
-    flag: '🇬🇷',
-    primaryExport: 'Zeytinyağı, Tarım',
-    importTariff: '%4,2',
-    shippingDays: '7-10',
-    satisfaction: 9.2,
-    satisfactionColor: 'bg-teal-50 text-teal-700 ring-1 ring-teal-200',
-  },
-  {
-    country: 'Hindistan',
-    flag: '🇮🇳',
-    primaryExport: 'Baharat, Tekstil',
-    importTariff: '%8,0',
-    shippingDays: '18-25',
-    satisfaction: 8.1,
-    satisfactionColor: 'bg-slate-100 text-slate-600',
-  },
-];
+  const sellersWithConvertedPrices = sellers.map(seller => ({
+    ...seller,
+    priceInTRY: seller.price * exchangeRates[seller.currency]
+  }));
 
-function PlatformIcon({ name }: { name: string }) {
-  if (name === 'Amazon') return <ShoppingCart size={16} className="text-slate-600" />;
-  if (name === 'Alibaba') return <Building2 size={16} className="text-slate-600" />;
-  return <Globe size={16} className="text-slate-600" />;
-}
+  const sortedSellers = [...sellersWithConvertedPrices].sort((a, b) => a.priceInTRY - b.priceInTRY);
+  const cheapestSeller = sortedSellers[0];
+  const domesticSellers = sellersWithConvertedPrices.filter(s => s.type === 'Yurt İçi');
+  const internationalSellers = sellersWithConvertedPrices.filter(s => s.type === 'Yurt Dışı');
 
-export default function MarketsPage() {
   return (
-    <div className="p-8 max-w-5xl">
-      {/* Sayfa başlığı */}
-      <div className="flex items-start justify-between mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">Küresel Ticaret Karşılaştırması</h1>
-          <p className="text-slate-500 text-sm mt-1">
-            Sınır ötesi ürün metriklerini ve platform dağılımını analiz edin.
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-sm font-medium text-slate-700 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
-            Raporu Dışa Aktar
-          </button>
-          <button className="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-colors">
-            Yeni Karşılaştırma
-          </button>
-        </div>
+    <div className="p-8 max-w-5xl mx-auto">
+      {/* Header */}
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-slate-900 mb-1">Ürün Analizi & Karşılaştırma</h1>
+        <p className="text-slate-500 text-sm">
+          Seçtiğiniz ürünün yurt içi ve yurt dışı pazar metriklerini, satıcı fiyatlarını ve popülerliğini inceleyin.
+        </p>
       </div>
 
-      <div className="flex gap-5">
-        {/* Sol sütun */}
-        <div className="flex-1 space-y-5">
-          {/* En Çok İşlem Gören Emtialar */}
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-base font-semibold text-slate-900">En Çok İşlem Gören Emtialar</h2>
-              <button className="p-1 text-slate-400 hover:text-slate-600 transition-colors">
-                <MoreHorizontal size={18} />
-              </button>
-            </div>
-            <div className="grid grid-cols-3 gap-3">
-              {commodities.map((c) => (
-                <div key={c.name} className="border border-slate-100 rounded-xl p-3 hover:border-slate-200 transition-colors">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="w-10 h-10 rounded-lg overflow-hidden bg-slate-100">
-                      <img src={c.image} alt={c.name} className="w-full h-full object-cover" />
-                    </div>
-                    <span className="text-xs bg-slate-50 border border-slate-100 rounded px-1.5 py-0.5 text-slate-500 font-medium">
-                      {c.flag} {c.country}
-                    </span>
-                  </div>
-                  <p className="text-sm font-semibold text-slate-900 mb-1">{c.name}</p>
-                  <p className="text-sm text-slate-700 mb-3">
-                    <span className="font-medium">{c.price}</span>
-                    <span className="text-slate-400 text-xs"> / {c.unit}</span>
-                  </p>
-                  <div className="h-px bg-slate-100 mb-3" />
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1 text-xs text-slate-400">
-                      <span>Popülerlik</span>
-                      <TrendingUp size={10} className="text-teal-500" />
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm font-semibold text-slate-800">{c.buyers}</p>
-                      <p className="text-xs text-teal-600 font-medium">Alıcı</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+        {/* Product Header */}
+        <div className="p-8 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white flex items-center gap-8">
+          <div className="w-32 h-32 rounded-2xl overflow-hidden shadow-sm bg-white border border-slate-200 flex items-center justify-center flex-shrink-0">
+            {urun.gorsel_url ? (
+              <img src={urun.gorsel_url} alt={urun.urun_adi} className="w-full h-full p-2 object-contain" />
+            ) : (
+              <Building2 size={32} className="text-slate-300" />
+            )}
+          </div>
+          <div className="flex-1 min-w-0">
+            <span className="text-xs font-semibold text-teal-600 bg-teal-50 px-2.5 py-1 rounded-full mb-3 inline-block border border-teal-100">
+              {urun.kategori || 'Genel'}
+            </span>
+            <h2 className="text-2xl font-bold text-slate-900 line-clamp-2 leading-tight">{urun.urun_adi}</h2>
+            <div className="flex items-center gap-6 mt-4">
+              <div className="flex items-center gap-2 text-sm text-slate-600">
+                <Globe size={18} className="text-slate-400" />
+                <span className="font-medium">{internationalSellers.length} Yurt Dışı Satıcı</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-slate-600">
+                <Award size={18} className="text-slate-400" />
+                <span className="font-medium">{domesticSellers.length} Yurt İçi Satıcı</span>
+              </div>
             </div>
           </div>
+          
+          {/* Cheapest Badge */}
+          <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-5 text-center min-w-[200px] flex-shrink-0">
+            <p className="text-sm font-medium text-emerald-600 mb-1">En Uygun Fiyat</p>
+            <p className="text-2xl font-bold text-emerald-700">
+              {cheapestSeller.currency}{cheapestSeller.price.toLocaleString('tr-TR')}
+            </p>
+            <p className="text-sm text-emerald-600 mt-2 flex items-center justify-center gap-1.5 font-medium">
+              <Building2 size={14} /> {cheapestSeller.name}
+            </p>
+          </div>
+        </div>
 
-          {/* Ticaret Metrikleri Karşılaştırması */}
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
-              <h2 className="text-base font-semibold text-slate-900">Ticaret Metrikleri Karşılaştırması</h2>
-              <button className="flex items-center gap-1.5 text-xs font-medium text-slate-500 border border-slate-200 rounded-md px-2.5 py-1.5 hover:bg-slate-50 transition-colors">
-                <Download size={12} />
-                CSV
-              </button>
-            </div>
-            <table className="w-full">
-              <thead>
-                <tr className="bg-slate-50 border-b border-slate-100">
-                  <th className="text-left text-xs font-semibold text-slate-500 px-5 py-3">Menşe Ülke</th>
-                  <th className="text-left text-xs font-semibold text-slate-500 px-4 py-3">Başlıca İhracat</th>
-                  <th className="text-right text-xs font-semibold text-slate-500 px-4 py-3">Ort. İthalat Tarifesi</th>
-                  <th className="text-right text-xs font-semibold text-slate-500 px-4 py-3">Ort. Kargo (Gün)</th>
-                  <th className="text-right text-xs font-semibold text-slate-500 px-5 py-3">Alıcı Memnuniyeti</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tradeMetrics.map((row, i) => (
-                  <tr
-                    key={row.country}
-                    className={`border-b border-slate-50 hover:bg-slate-50/50 transition-colors ${
-                      i === tradeMetrics.length - 1 ? 'border-b-0' : ''
-                    }`}
-                  >
-                    <td className="px-5 py-4">
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg leading-none">{row.flag}</span>
-                        <span className="text-sm font-medium text-slate-800">{row.country}</span>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-sm text-slate-600">{row.primaryExport}</td>
-                    <td className="px-4 py-4 text-sm text-slate-700 text-right font-medium">{row.importTariff}</td>
-                    <td className="px-4 py-4 text-sm text-slate-700 text-right">{row.shippingDays}</td>
-                    <td className="px-5 py-4 text-right">
-                      <span
-                        className={`inline-flex items-center justify-center text-sm font-semibold rounded-full px-3 py-1 ${row.satisfactionColor}`}
-                      >
-                        {row.satisfaction}/10
+        {/* Detailed Comparison Table/Cards */}
+        <div className="p-8 bg-slate-50/50">
+          <h3 className="text-lg font-semibold text-slate-800 mb-5">Piyasa Satıcı Karşılaştırması</h3>
+          <div className="grid grid-cols-1 gap-4">
+            {sortedSellers.map((seller, index) => {
+              const isCheapest = index === 0;
+              return (
+                <div 
+                  key={seller.name} 
+                  className={`relative bg-white rounded-2xl border p-6 flex items-center gap-8 transition-shadow hover:shadow-md ${
+                    isCheapest ? 'border-emerald-200 ring-1 ring-emerald-100' : 'border-slate-200'
+                  }`}
+                >
+                  {isCheapest && (
+                     <div className="absolute -top-3 -right-3 bg-emerald-500 text-white p-2 rounded-full shadow-sm" title="En Düşük Fiyat">
+                       <TrendingDown size={16} />
+                     </div>
+                  )}
+
+                  {/* Seller Info */}
+                  <div className="w-56 flex-shrink-0 flex items-center gap-4 border-r border-slate-100 pr-6">
+                    <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center flex-shrink-0 border border-slate-100">
+                      {getSellerIcon(seller.icon)}
+                    </div>
+                    <div>
+                      <p className="text-base font-bold text-slate-900">{seller.name}</p>
+                      <span className={`text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded mt-1 inline-block ${
+                        seller.type === 'Yurt İçi' ? 'bg-red-50 text-red-600' : 'bg-blue-50 text-blue-600'
+                      }`}>
+                        {seller.type}
                       </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Sağ sütun - Hangi platform? */}
-        <div className="w-64 flex-shrink-0">
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
-            <h2 className="text-base font-semibold text-slate-900">Hangi Platform?</h2>
-            <p className="text-xs text-slate-400 mt-0.5 mb-5">Platform satış dağılımı</p>
-            <div className="space-y-5">
-              {platforms.map((platform) => (
-                <div key={platform.name}>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center">
-                        <PlatformIcon name={platform.name} />
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-slate-800">{platform.name}</p>
-                        <p className="text-xs text-slate-400">{platform.type}</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm font-bold text-slate-900">{platform.buyers.toLocaleString('tr-TR')}</p>
-                      <p className="text-xs text-teal-600 font-medium">Alıcı</p>
                     </div>
                   </div>
-                  <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                    <div className={`h-full ${platform.barColor} ${platform.barWidth} rounded-full transition-all`} />
+
+                  {/* Price Info */}
+                  <div className="flex-1 flex items-center gap-8 px-2">
+                    <div className="flex-1">
+                      <p className="text-xs text-slate-400 font-medium mb-1 uppercase tracking-wider">Satış Fiyatı</p>
+                      <p className={`text-xl font-bold ${isCheapest ? 'text-emerald-600' : 'text-slate-900'}`}>
+                        {seller.currency}{seller.price.toLocaleString('tr-TR')}
+                      </p>
+                      {seller.currency !== '₺' && (
+                        <p className="text-sm text-slate-500 mt-0.5 font-medium">
+                          ~₺{seller.priceInTRY.toLocaleString('tr-TR', { maximumFractionDigits: 0 })}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Likes/Popularity */}
+                    <div className="flex-1">
+                      <p className="text-xs text-slate-400 font-medium mb-1 uppercase tracking-wider">Popülerlik</p>
+                      <div className="flex items-center gap-2">
+                        <Heart size={18} className="text-rose-500 fill-rose-500/20" />
+                        <p className="text-base font-semibold text-slate-800">
+                          {seller.likes >= 1000 ? `${(seller.likes/1000).toFixed(1)}k` : seller.likes}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Rating */}
+                    <div className="flex-1">
+                      <p className="text-xs text-slate-400 font-medium mb-1 uppercase tracking-wider">Satıcı Puanı</p>
+                      <div className="flex items-center gap-1.5">
+                        <Star size={18} className="text-amber-400 fill-amber-400" />
+                        <p className="text-base font-semibold text-slate-800">{seller.rating.toFixed(1)}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Action */}
+                  <div className="pl-6 border-l border-slate-100">
+                    <button className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
+                      isCheapest 
+                        ? 'bg-emerald-500 text-white hover:bg-emerald-600' 
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    }`}>
+                      Mağazaya Git
+                    </button>
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>
 
-      {/* Alt bilgi */}
-      <footer className="mt-12 pt-6 border-t border-slate-200">
-        <div className="flex items-center justify-between">
-          <p className="text-xs text-slate-400">
-            © 2024 Getiremmi. Kurumsal Düzeyde Veri.
-          </p>
-          <div className="flex items-center gap-6">
-            {['Ticaret Mevzuatı', 'Piyasa Analizleri', 'Hukuki Uyum', 'Teknik Destek'].map((link) => (
-              <a key={link} href="#" className="text-xs text-slate-500 hover:text-slate-700 transition-colors">
-                {link}
-              </a>
-            ))}
-          </div>
+      {/* Additional Analysis Alert */}
+      <div className="mt-6 bg-blue-50 border border-blue-100 rounded-2xl p-5 flex gap-4 items-start shadow-sm">
+        <div className="bg-blue-100 p-2.5 rounded-xl text-blue-600 mt-0.5">
+          <TrendingDown size={24} />
         </div>
-      </footer>
+        <div>
+          <h4 className="text-base font-semibold text-blue-900 mb-1.5">Piyasa Analiz Özeti</h4>
+          <p className="text-sm text-blue-700 leading-relaxed">
+            Bu üründe en uygun fiyatlı satıcı olan <span className="font-bold">{cheapestSeller.name}</span> ({cheapestSeller.type}), 
+            ortalama pazar fiyatından hesaplı bir teklif sunmaktadır. Yurt dışı siparişlerde gümrük vergileri ve kargo masraflarının 
+            toplam maliyete ekleneceğini göz önünde bulundurmayı unutmayın.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
