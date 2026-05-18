@@ -1,0 +1,347 @@
+{
+    "document_id": "dashboard_live_snapshot",
+    "last_pipeline_run": "2026-05-18 17:13:05",
+    "pipeline_status": {
+        "competitor_data": "ok",
+        "trend_forecast": "ok",
+        "sustainability": "ok",
+        "ai_advisor": "ok"
+    },
+    "realtime_navlun_tablosu": [
+        {
+            "id": 1,
+            "firma": "Maersk Line (Marvel Spidey a...)",
+            "kalkis": "Şanghay",
+            "varis": "İstanbul",
+            "fiyat": "TRY300.74",
+            "durum": "Sınırlı",
+            "kapasite": "%47",
+            "gemi": "M/V Logistic-1",
+            "gorsel": "urun_gorselleri/urun_1.jpg"
+        },
+        {
+            "id": 2,
+            "firma": "MSC Cargo (Marvel Legends ...)",
+            "kalkis": "Rotterdam",
+            "varis": "Mersin",
+            "fiyat": "TRY1,653.14",
+            "durum": "Uygun",
+            "kapasite": "%54",
+            "gemi": "M/V Logistic-2",
+            "gorsel": "urun_gorselleri/urun_2.jpg"
+        },
+        {
+            "id": 3,
+            "firma": "CMA CGM (Disney Store Of...)",
+            "kalkis": "New York",
+            "varis": "İzmir",
+            "fiyat": "TRY2,733.36",
+            "durum": "Sınırlı",
+            "kapasite": "%61",
+            "gemi": "M/V Logistic-3",
+            "gorsel": "urun_gorselleri/urun_3.jpg"
+        },
+        {
+            "id": 4,
+            "firma": "Hapag-Lloyd (Marvel Avengers...)",
+            "kalkis": "Şanghay",
+            "varis": "İstanbul",
+            "fiyat": "This is the way to the Star Wars collectors corner",
+            "durum": "Sınırlı",
+            "kapasite": "%68",
+            "gemi": "M/V Logistic-4",
+            "gorsel": "urun_gorselleri/urun_4.jpg"
+        },
+        {
+            "id": 5,
+            "firma": "ZIM Integrated (Disney Store Of...)",
+            "kalkis": "Rotterdam",
+            "varis": "Mersin",
+            "fiyat": "$3225",
+            "durum": "Sınırlı",
+            "kapasite": "%75",
+            "gemi": "M/V Logistic-5",
+            "gorsel": "urun_gorselleri/urun_5.jpg"
+        },
+        {
+            "id": 6,
+            "firma": "Maersk Line (Marvel Studios ...)",
+            "kalkis": "New York",
+            "varis": "İzmir",
+            "fiyat": "TRY1,653.14",
+            "durum": "Sınırlı",
+            "kapasite": "%82",
+            "gemi": "M/V Logistic-6",
+            "gorsel": "urun_gorselleri/urun_6.jpg"
+        },
+        {
+            "id": 7,
+            "firma": "MSC Cargo (MonsterVerse Go...)",
+            "kalkis": "Şanghay",
+            "varis": "İstanbul",
+            "fiyat": "Discover the Magic World of LEGO® Disney",
+            "durum": "Sınırlı",
+            "kapasite": "%89",
+            "gemi": "M/V Logistic-7",
+            "gorsel": "urun_gorselleri/urun_7.jpg"
+        },
+        {
+            "id": 8,
+            "firma": "CMA CGM (Sonic 3 Movie S...)",
+            "kalkis": "Rotterdam",
+            "varis": "Mersin",
+            "fiyat": "TRY1,051.66",
+            "durum": "Sınırlı",
+            "kapasite": "%96",
+            "gemi": "M/V Logistic-8",
+            "gorsel": "urun_gorselleri/urun_8.jpg"
+        },
+        {
+            "id": 9,
+            "firma": "Hapag-Lloyd (Disney Store Of...)",
+            "kalkis": "New York",
+            "varis": "İzmir",
+            "fiyat": "TRY648.86",
+            "durum": "Sınırlı",
+            "kapasite": "%42",
+            "gemi": "M/V Logistic-9",
+            "gorsel": "urun_gorselleri/urun_9.jpg"
+        },
+        {
+            "id": 10,
+            "firma": "ZIM Integrated (avengers Marvel...)",
+            "kalkis": "Şanghay",
+            "varis": "İstanbul",
+            "fiyat": "$3450",
+            "durum": "Sınırlı",
+            "kapasite": "%49",
+            "gemi": "M/V Logistic-10",
+            "gorsel": "urun_gorselleri/urun_10.jpg"
+        },
+        {
+            "id": 11,
+            "firma": "Maersk Line (Sonic 3 MOVIE S...)",
+            "kalkis": "Rotterdam",
+            "varis": "Mersin",
+            "fiyat": "TRY 965.39",
+            "durum": "Sınırlı",
+            "kapasite": "%56",
+            "gemi": "M/V Logistic-11",
+            "gorsel": "urun_gorselleri/urun_11.jpg"
+        },
+        {
+            "id": 12,
+            "firma": "MSC Cargo (EDLMKM T13 Acti...)",
+            "kalkis": "New York",
+            "varis": "İzmir",
+            "fiyat": "$3540",
+            "durum": "Sınırlı",
+            "kapasite": "%63",
+            "gemi": "M/V Logistic-12",
+            "gorsel": "urun_gorselleri/urun_12.jpg"
+        },
+        {
+            "id": 14,
+            "firma": "CMA CGM (BANDAI Anime He...)",
+            "kalkis": "Şanghay",
+            "varis": "İstanbul",
+            "fiyat": "£36.55",
+            "durum": "Sınırlı",
+            "kapasite": "%77",
+            "gemi": "M/V Logistic-14",
+            "gorsel": "urun_gorselleri/urun_14.jpg"
+        },
+        {
+            "id": 15,
+            "firma": "Hapag-Lloyd (8PCS Steal A Br...)",
+            "kalkis": "Rotterdam",
+            "varis": "Mersin",
+            "fiyat": "TRY436.83",
+            "durum": "Sınırlı",
+            "kapasite": "%84",
+            "gemi": "M/V Logistic-15",
+            "gorsel": "urun_gorselleri/urun_15.jpg"
+        },
+        {
+            "id": 16,
+            "firma": "ZIM Integrated (Batman S1 Actio...)",
+            "kalkis": "New York",
+            "varis": "İzmir",
+            "fiyat": "This is the way to the Star Wars collectors corner",
+            "durum": "Sınırlı",
+            "kapasite": "%91",
+            "gemi": "M/V Logistic-16",
+            "gorsel": "urun_gorselleri/urun_16.jpg"
+        },
+        {
+            "id": 17,
+            "firma": "Maersk Line (SPIDEY AND HIS ...)",
+            "kalkis": "Şanghay",
+            "varis": "İstanbul",
+            "fiyat": "Discover the Magic World of LEGO® Disney",
+            "durum": "Sınırlı",
+            "kapasite": "%98",
+            "gemi": "M/V Logistic-17",
+            "gorsel": "urun_gorselleri/urun_17.jpg"
+        },
+        {
+            "id": 18,
+            "firma": "MSC Cargo (STAR WARS The B...)",
+            "kalkis": "Rotterdam",
+            "varis": "Mersin",
+            "fiyat": "TRY780.70",
+            "durum": "Sınırlı",
+            "kapasite": "%44",
+            "gemi": "M/V Logistic-18",
+            "gorsel": "urun_gorselleri/urun_18.jpg"
+        },
+        {
+            "id": 19,
+            "firma": "CMA CGM (ÆDC Comics, SUP...)",
+            "kalkis": "New York",
+            "varis": "İzmir",
+            "fiyat": "$3855",
+            "durum": "Sınırlı",
+            "kapasite": "%51",
+            "gemi": "M/V Logistic-19",
+            "gorsel": "urun_gorselleri/urun_19.jpg"
+        },
+        {
+            "id": 20,
+            "firma": "Hapag-Lloyd (DC Comics, Batm...)",
+            "kalkis": "Şanghay",
+            "varis": "İstanbul",
+            "fiyat": "$3900",
+            "durum": "Sınırlı",
+            "kapasite": "%58",
+            "gemi": "M/V Logistic-20",
+            "gorsel": "urun_gorselleri/urun_20.jpg"
+        },
+        {
+            "id": 21,
+            "firma": "ZIM Integrated (Spidey and his ...)",
+            "kalkis": "Rotterdam",
+            "varis": "Mersin",
+            "fiyat": "TRY385.79",
+            "durum": "Sınırlı",
+            "kapasite": "%65",
+            "gemi": "M/V Logistic-21",
+            "gorsel": "urun_gorselleri/urun_21.jpg"
+        },
+        {
+            "id": 22,
+            "firma": "Maersk Line (The Super Mario...)",
+            "kalkis": "New York",
+            "varis": "İzmir",
+            "fiyat": "This is the way to the Star Wars collectors corner",
+            "durum": "Sınırlı",
+            "kapasite": "%72",
+            "gemi": "M/V Logistic-22",
+            "gorsel": "urun_gorselleri/urun_22.jpg"
+        },
+        {
+            "id": 24,
+            "firma": "MSC Cargo (EDLMKM 2 Pack A...)",
+            "kalkis": "Şanghay",
+            "varis": "İstanbul",
+            "fiyat": "$4080",
+            "durum": "Sınırlı",
+            "kapasite": "%86",
+            "gemi": "M/V Logistic-24",
+            "gorsel": "urun_gorselleri/urun_24.jpg"
+        },
+        {
+            "id": 25,
+            "firma": "CMA CGM (Marvel Spider-M...)",
+            "kalkis": "Rotterdam",
+            "varis": "Mersin",
+            "fiyat": "$4125",
+            "durum": "Sınırlı",
+            "kapasite": "%93",
+            "gemi": "M/V Logistic-25",
+            "gorsel": "urun_gorselleri/urun_25.jpg"
+        },
+        {
+            "id": 26,
+            "firma": "Hapag-Lloyd (Marvel Spider-M...)",
+            "kalkis": "New York",
+            "varis": "İzmir",
+            "fiyat": "This is the way to the Star Wars collectors corner",
+            "durum": "Sınırlı",
+            "kapasite": "%100",
+            "gemi": "M/V Logistic-26",
+            "gorsel": "urun_gorselleri/urun_26.jpg"
+        }
+    ],
+    "predictive_ai_trend_grafigi": [
+        {
+            "name": "Mayıs 2026",
+            "Gida": 967,
+            "Tekstil": 696,
+            "Otomotiv": 464,
+            "isForecast": false
+        },
+        {
+            "name": "Haziran (Tahmin)",
+            "Gida": 967,
+            "Tekstil": 696,
+            "Otomotiv": 464,
+            "isForecast": true,
+            "confidence": "low"
+        },
+        {
+            "name": "Temmuz (Tahmin)",
+            "Gida": 967,
+            "Tekstil": 696,
+            "Otomotiv": 464,
+            "isForecast": true,
+            "confidence": "low"
+        },
+        {
+            "name": "Ağustos (Tahmin)",
+            "Gida": 967,
+            "Tekstil": 696,
+            "Otomotiv": 464,
+            "isForecast": true,
+            "confidence": "low"
+        }
+    ],
+    "green_logistics_karne_meta": {
+        "genel_ska_skoru": 88,
+        "toplam_karbon_ayak_izi": 73650.0,
+        "birlesmis_milletler_uyum": [
+            "SKA 7",
+            "SKA 9",
+            "SKA 11",
+            "SKA 13"
+        ],
+        "rotalar": [
+            {
+                "rota": "Şanghay - İstanbul",
+                "arac": "Gemi",
+                "karbon_salinimi_kg": 60000.0,
+                "ska_puani": 92,
+                "durum": "Optimum"
+            },
+            {
+                "rota": "Rotterdam - Mersin",
+                "arac": "Gemi",
+                "karbon_salinimi_kg": 10500.0,
+                "ska_puani": 92,
+                "durum": "Optimum"
+            },
+            {
+                "rota": "Münih - İstanbul",
+                "arac": "Kamyon",
+                "karbon_salinimi_kg": 3150.0,
+                "ska_puani": 47,
+                "durum": "İyileştirilmeli"
+            }
+        ],
+        "guncellenme_zamani": "2026-05-18 17:13:04.127463"
+    },
+    "yapay_zeka_asistan_analizi": {
+        "lojistik_komuta_mesaji": "Haziran ve Temmuz aylarında gıda ve oyuncak lojistiğinde %45 talep artışı öngörülüyor. Maersk Line rotalarında navlun maliyet avantajı sabitlenmiştir.",
+        "otomasyon_urun_analiz_yorumu": "Son kazınan Marvel serisi ürünlerin stok durumları 'Sınırlı kargo sevkiyatı' kategorisinde olup, gümrük geçiş evraklarının önceliklendirilmesi önerilir."
+    }
+}
