@@ -1,0 +1,34 @@
+{
+    "genel_ska_skoru": 88,
+    "toplam_karbon_ayak_izi": 73650.0,
+    "birlesmis_milletler_uyum": [
+        "SKA 7",
+        "SKA 9",
+        "SKA 11",
+        "SKA 13"
+    ],
+    "rotalar": [
+        {
+            "rota": "Şanghay - İstanbul",
+            "arac": "Gemi",
+            "karbon_salinimi_kg": 60000.0,
+            "ska_puani": 92,
+            "durum": "Optimum"
+        },
+        {
+            "rota": "Rotterdam - Mersin",
+            "arac": "Gemi",
+            "karbon_salinimi_kg": 10500.0,
+            "ska_puani": 92,
+            "durum": "Optimum"
+        },
+        {
+            "rota": "Münih - İstanbul",
+            "arac": "Kamyon",
+            "karbon_salinimi_kg": 3150.0,
+            "ska_puani": 47,
+            "durum": "İyileştirilmeli"
+        }
+    ],
+    "guncellenme_zamani": "2026-05-18 17:13:04.127463"
+}
