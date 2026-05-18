@@ -4,8 +4,24 @@ import Sidebar from './components/Sidebar';
 import DashboardPage from './pages/DashboardPage';
 import ComparisonsPage from './pages/ComparisonsPage';
 import MarketsPage from './pages/MarketsPage';
+import SustainabilityPage from './pages/SustainabilityPage';
+import DemandPoolPage from './pages/DemandPoolPage';
+import LogisticsPage from './pages/LogisticsPage';
+import CustomsPage from './pages/CustomsPage';
+import CompetitorPage from './pages/CompetitorPage';
+import TrendPage from './pages/TrendPage';
 
-export type Page = 'dashboard' | 'comparisons' | 'markets' | 'reports';
+export type Page =
+  | 'dashboard'
+  | 'comparisons'
+  | 'markets'
+  | 'reports'
+  | 'sustainability'
+  | 'demand'
+  | 'logistics'
+  | 'customs'
+  | 'competitor'
+  | 'trend';
 
 function App() {
   const [activePage, setActivePage] = useState<Page>('dashboard');
@@ -19,6 +35,12 @@ function App() {
           {activePage === 'dashboard' && <DashboardPage />}
           {activePage === 'comparisons' && <ComparisonsPage />}
           {activePage === 'markets' && <MarketsPage />}
+          {activePage === 'sustainability' && <SustainabilityPage />}
+          {activePage === 'demand' && <DemandPoolPage />}
+          {activePage === 'logistics' && <LogisticsPage />}
+          {activePage === 'customs' && <CustomsPage />}
+          {activePage === 'competitor' && <CompetitorPage />}
+          {activePage === 'trend' && <TrendPage />}
           {activePage === 'reports' && (
             <div className="flex items-center justify-center h-96 text-slate-400 text-lg">
               Raporlar yakında geliyor…
