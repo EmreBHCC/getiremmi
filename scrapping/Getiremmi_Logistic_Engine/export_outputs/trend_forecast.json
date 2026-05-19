@@ -1,0 +1,34 @@
+
+[
+    {
+        "name": "Mayıs 2026",
+        "Gida": 967,
+        "Tekstil": 696,
+        "Otomotiv": 464,
+        "isForecast": false
+    },
+    {
+        "name": "Haziran (Tahmin)",
+        "Gida": 967,
+        "Tekstil": 696,
+        "Otomotiv": 464,
+        "isForecast": true,
+        "confidence": "low"
+    },
+    {
+        "name": "Temmuz (Tahmin)",
+        "Gida": 967,
+        "Tekstil": 696,
+        "Otomotiv": 464,
+        "isForecast": true,
+        "confidence": "low"
+    },
+    {
+        "name": "Ağustos (Tahmin)",
+        "Gida": 967,
+        "Tekstil": 696,
+        "Otomotiv": 464,
+        "isForecast": true,
+        "confidence": "low"
+    }
+]
