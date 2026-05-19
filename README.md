@@ -7,7 +7,7 @@ Platform, tüm bu veriyi sezgisel bir React dashboard üzerinde görselleştirer
 ---
 
 ### 🖼️ Uygulama Şeması
-<img src="./assets/excalidraw.png" alt="Uygulama Tasarımı" width="800" style="display: block; margin: auto;" />
+<img src="./assets/Getiremmi_Datapipeline.png" alt="Uygulama Tasarımı" width="800" style="display: block; margin: auto;" />
 
 ### 🎥 Uygulama Tanıtım Videosu
 [▶️ Google Drive Tanıtım Videosu](https://drive.google.com/file/d/1LybLexOQIYUymIdgPKy_LxH4FuYACw3p/view?usp=sharing)
