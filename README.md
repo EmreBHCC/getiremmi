@@ -5,11 +5,20 @@ Bu proje, **Getiremmi** uygulamasının kullanıcı arayüzünü (frontend) içe
 ---
 
 ## 📋 İçindekiler
+- [📂 Proje Kaynakları (Google Drive)](#-proje-kaynakları-google-drive)
 - [Teknolojiler (Tech Stack)](#-teknolojiler-tech-stack)
 - [Mimari ve Proje Yapısı](#️-mimari-ve-proje-yapısı)
 - [Modüller ve Teknik Mimari](#-modüller-ve-teknik-mimari)
 - [Kurulum ve Çalıştırma](#-kurulum-ve-çalıştırma)
 - [Ek Notlar](#-ek-notlar)
+
+---
+
+## 📂 Proje Kaynakları (Google Drive)
+
+Projenin tasarım kaynaklarına, dokümantasyonlarına ve paylaşılan diğer kurumsal materyallere aşağıdaki bağlantıdan ulaşabilirsiniz:
+
+🔗 **[Getiremmi Google Drive Klasörü](BURAYA_GOOGLE_DRIVE_LINKINIZI_YAPISTIRIN)**
 
 ---
 
@@ -30,9 +39,9 @@ Bu proje, **Getiremmi** uygulamasının kullanıcı arayüzünü (frontend) içe
 
 | | | |
 | :---: | :---: | :---: |
-| ![1](../assets/1.png) | ![2](../assets/2.png) | ![3](../assets/3.png) |
-| ![4](../assets/4.png) | ![5](../assets/5.png) | ![6](../assets/6.png) |
-| ![7](../assets/7.png) | ![8](../assets/8.png) | ![9](../assets/9.png) |
+| ![1](./assets/1.png) | ![2](./assets/2.png) | ![3](./assets/3.png) |
+| ![4](./assets/4.png) | ![5](./assets/5.png) | ![6](./assets/6.png) |
+| ![7](./assets/7.png) | ![8](./assets/8.png) | ![9](./assets/9.png) |
 
 ---
 
@@ -63,8 +72,6 @@ frontend/
     ├── firebase.ts     # Firebase konfigürasyon ve bağlantı ayarları
     ├── index.css       # Global Tailwind CSS stilleri
     └── main.tsx        # Uygulamanın giriş noktası
-```
-
 ---
 
 ## 🧩 Modüller ve Teknik Mimari
