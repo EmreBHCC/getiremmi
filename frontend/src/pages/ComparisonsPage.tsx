@@ -425,28 +425,6 @@ export default function ComparisonsPage({
       </div>
 
       <div className="max-w-7xl mx-auto px-8 py-6 space-y-6">
-        {/* Kategori seçimi */}
-        <div>
-          <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">
-            Kategori Seç
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {kategoriler.map((kat) => (
-              <button
-                key={kat}
-                onClick={() => setAktifKategori(kat)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-150 border
-                  ${aktifKategori === kat
-                    ? 'bg-teal-600 text-white border-teal-600 shadow-sm shadow-teal-200'
-                    : 'bg-white text-slate-600 border-slate-200 hover:border-teal-300 hover:text-teal-700 hover:bg-teal-50'
-                  }`}
-              >
-                <span>{CATEGORY_ICONS[kat] ?? '📦'}</span>
-                {kat}
-              </button>
-            ))}
-          </div>
-        </div>
 
         {/* Arama + Sıralama */}
         <div className="flex flex-col sm:flex-row gap-3">
