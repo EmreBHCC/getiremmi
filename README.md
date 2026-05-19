@@ -16,7 +16,7 @@ Frontend katmanımız, backend'den gelen veriyi modüler bileşenler (React/TS) 
 ![Frontend Sistem Mimarisi](./assets/frontend.png)
 
 ### 🎥 Uygulama Tanıtım Videosu
-[▶️ Google Drive Tanıtım Videosu](https://drive.google.com/file/d/1kHq-7l4Okr9NLTmxchbmM4EfqCLe6rmu/view?usp=sharing)
+[▶️ Google Drive Tanıtım Videosu](https://drive.google.com/file/d/1WDb40VfZ4rCByJzQcrxeC_VpGNdq10GG/view?usp=sharing)
 
 ---
 
