@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { BookOpen, Search, AlertCircle, CheckCircle, XCircle, Info, ChevronDown } from 'lucide-react';
+import { BookOpen, Search, AlertCircle, CheckCircle, XCircle, Info, ChevronDown, Loader2 } from 'lucide-react';
+import { db } from '../firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 interface GtipResult {
   code: string;
@@ -87,22 +89,72 @@ export default function CustomsPage() {
   const [query, setQuery] = useState('');
   const [result, setResult] = useState<GtipResult | null>(null);
   const [notFound, setNotFound] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSearch = () => {
-    const trimmed = query.trim();
-    if (gtipDatabase[trimmed]) {
-      setResult(gtipDatabase[trimmed]);
-      setNotFound(false);
-    } else {
-      setResult(null);
-      setNotFound(true);
-    }
+  const executeSearch = (searchQuery: string) => {
+    const trimmed = searchQuery.trim();
+    if (!trimmed) return;
+    
+    setLoading(true);
+    
+    setTimeout(() => {
+      let foundResult: GtipResult | null = null;
+      let isNotFound = false;
+      
+      if (gtipDatabase[trimmed]) {
+        foundResult = gtipDatabase[trimmed];
+      } else {
+        // Kullanıcının App.tsx'teki mock simülasyon mantığı (fallback)
+        let mockGtip: GtipResult = {
+          code: trimmed,
+          description: 'Sistem dışı simülasyon ürünü',
+          taxRate: 20,
+          kdv: 20,
+          additionalDuty: null,
+          status: 'free',
+          restrictions: ['Standart ithalat rejimine tabidir. Ek denetim belgesi gerekebilir.'],
+          notes: 'Dinamik simülasyon sonucu oluşturuldu.',
+        };
+
+        if (trimmed.startsWith('85')) {
+          mockGtip = { 
+            ...mockGtip, 
+            taxRate: 25, 
+            status: 'restricted',
+            restrictions: ["Elektronik ürün kapsamında TRT bandrolü ve TSE onayı gereklidir."],
+          };
+        } else if (trimmed.startsWith('12')) {
+          mockGtip = { 
+            ...mockGtip, 
+            taxRate: 10, 
+            status: 'banned',
+            restrictions: ["Tarım bakanlığı özel izni kısıtlaması nedeniyle geçici olarak ithalatı durdurulmuştur."],
+            notes: 'İthalat durduruldu.'
+          };
+        }
+        foundResult = mockGtip;
+      }
+
+      setResult(foundResult);
+      setNotFound(isNotFound);
+      setLoading(false);
+
+      // Arka planda Firebase'e kaydet (UI takılmaması için await yok)
+      addDoc(collection(db, "gtip_searches"), {
+        gtipCode: trimmed,
+        date: new Date().toISOString()
+      }).catch(error => {
+        console.error("Firebase kayıt hatası: ", error);
+      });
+      
+    }, 500);
   };
+
+  const handleSearch = () => executeSearch(query);
 
   const handleQuickSelect = (code: string) => {
     setQuery(code);
-    setResult(gtipDatabase[code]);
-    setNotFound(false);
+    executeSearch(code);
   };
 
   return (
@@ -126,7 +178,7 @@ export default function CustomsPage() {
           GTİP (Gümrük Tarife İstatistik Pozisyonu) Kodu
         </label>
         <div className="flex gap-3">
-          <div className="relative flex-1">
+          <div className={`relative flex-1 transition-opacity ${loading ? 'pointer-events-none opacity-50' : ''}`}>
             <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
@@ -139,14 +191,16 @@ export default function CustomsPage() {
           </div>
           <button
             onClick={handleSearch}
-            className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-6 py-3 rounded-xl text-sm transition-colors shadow-sm"
+            disabled={loading}
+            className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-6 py-3 rounded-xl text-sm transition-colors shadow-sm flex items-center gap-2 disabled:bg-amber-400 disabled:opacity-80"
           >
-            Sorgula
+            {loading ? <Loader2 size={16} className="animate-spin" /> : null}
+            {loading ? 'Sorgulanıyor...' : 'Sorgula'}
           </button>
         </div>
 
         {/* Hızlı Seçimler */}
-        <div className="mt-4">
+        <div className={`mt-4 transition-opacity ${loading ? 'pointer-events-none opacity-50' : ''}`}>
           <p className="text-xs text-slate-400 mb-2">Örnek kodlar:</p>
           <div className="flex flex-wrap gap-2">
             {popularCodes.map((code) => (

@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Truck, Ship, Plane, Package, Calculator, ArrowRight, Info } from 'lucide-react';
+import { Truck, Ship, Plane, Package, Calculator, ArrowRight, Info, Loader2 } from 'lucide-react';
+import { db } from '../firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 type Mode = 'sea' | 'air' | 'land';
 
@@ -60,24 +62,49 @@ function ResultCard({ label, value, sub }: { label: string; value: string; sub?:
 
 export default function LogisticsPage() {
   const [mode, setMode] = useState<Mode>('sea');
-  const [weight, setWeight] = useState('1000');
-  const [value, setValue] = useState('50000');
+  const [weight, setWeight] = useState('150');
+  const [volume, setVolume] = useState('2.5');
+  const [value, setValue] = useState('5000');
   const [originIdx, setOriginIdx] = useState(0);
   const [calculated, setCalculated] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const origin = originOptions[originIdx];
   const cfg = modeConfig[mode];
 
   const weightNum = parseFloat(weight) || 0;
+  const volumeNum = parseFloat(volume) || 0;
   const valueNum = parseFloat(value) || 0;
 
-  const freight = weightNum * cfg.baseRate * origin.multiplier;
+  // Hacim ve ağırlık bazlı navlun fiyatlandırması (Kullanıcının formülü + mevcut katsayılar)
+  const basePrice = (weightNum * 0.5) + (volumeNum * 1.2);
+  const freight = basePrice * cfg.baseRate * origin.multiplier;
   const insurance = valueNum * 0.0035;
   const customs = valueNum * 0.18;
   const total = freight + insurance + customs;
   const perKg = weightNum > 0 ? total / weightNum : 0;
 
-  const handleCalc = () => setCalculated(true);
+  const handleCalc = () => {
+    setLoading(true);
+    
+    setTimeout(() => {
+      setCalculated(true);
+      setLoading(false);
+
+      // Arka planda Firebase'e kaydet (UI'ı bekletmemesi için await kullanılmıyor)
+      addDoc(collection(db, "logistics_calculations"), {
+        weight: weightNum,
+        volume: volumeNum,
+        mode: cfg.label,
+        origin: origin.label,
+        freight: freight,
+        totalCost: total,
+        date: new Date().toISOString()
+      }).catch(error => {
+        console.error("Firebase kayıt hatası: ", error);
+      });
+    }, 400); // UI tepkisi için küçük bir bekleme süresi
+  };
 
   return (
     <div className="p-8 max-w-5xl mx-auto">
@@ -97,7 +124,8 @@ export default function LogisticsPage() {
       <div className="grid grid-cols-2 gap-8">
         {/* Sol: Form */}
         <div className="space-y-6">
-          {/* Taşıma Modu */}
+          <div className={`space-y-6 ${loading ? 'pointer-events-none opacity-50' : ''}`}>
+            {/* Taşıma Modu */}
           <div>
             <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Taşıma Modu</p>
             <div className="grid grid-cols-3 gap-2">
@@ -139,8 +167,8 @@ export default function LogisticsPage() {
             </select>
           </div>
 
-          {/* Ağırlık & Değer */}
-          <div className="grid grid-cols-2 gap-4">
+          {/* Ağırlık, Hacim & Değer */}
+          <div className="grid grid-cols-3 gap-4">
             <div>
               <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
                 Ağırlık (kg)
@@ -151,6 +179,20 @@ export default function LogisticsPage() {
                   type="number"
                   value={weight}
                   onChange={(e) => { setWeight(e.target.value); setCalculated(false); }}
+                  className="w-full border border-slate-200 rounded-xl pl-9 pr-4 py-3 text-sm text-slate-800 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition"
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                Hacim (m³)
+              </label>
+              <div className="relative">
+                <Package size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input
+                  type="number"
+                  value={volume}
+                  onChange={(e) => { setVolume(e.target.value); setCalculated(false); }}
                   className="w-full border border-slate-200 rounded-xl pl-9 pr-4 py-3 text-sm text-slate-800 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition"
                 />
               </div>
@@ -170,14 +212,20 @@ export default function LogisticsPage() {
               </div>
             </div>
           </div>
+          </div>
 
           <button
             onClick={handleCalc}
-            className="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-3.5 rounded-xl text-sm transition-colors flex items-center justify-center gap-2 shadow-sm"
+            disabled={loading}
+            className="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-3.5 rounded-xl text-sm transition-colors flex items-center justify-center gap-2 shadow-sm disabled:bg-slate-700 disabled:opacity-80"
           >
-            <Calculator size={16} />
-            Maliyeti Hesapla
-            <ArrowRight size={16} />
+            {loading ? (
+              <Loader2 size={16} className="animate-spin" />
+            ) : (
+              <Calculator size={16} />
+            )}
+            {loading ? 'Hesaplanıyor...' : 'Maliyeti Hesapla'}
+            {!loading && <ArrowRight size={16} />}
           </button>
         </div>
 

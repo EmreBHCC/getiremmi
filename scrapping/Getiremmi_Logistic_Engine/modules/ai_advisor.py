@@ -1,7 +1,18 @@
 import os
 import json
 from google import genai
+import os
+from dotenv import load_dotenv
+import google.generativeai as genai
 
+# Kasayı koda yükle
+load_dotenv()
+
+# Şifreyi güvenli yoldan çek
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+# Gemini'ye anahtarı ver
+genai.configure(api_key=GEMINI_API_KEY)
 
 def generate_ai_assistant_comment():
     print("🤖 [Gemini AI Advisor] Otomasyon verileri ve ürün yorumları analiz ediliyor...")
