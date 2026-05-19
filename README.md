@@ -6,8 +6,14 @@ Platform, tüm bu veriyi sezgisel bir React dashboard üzerinde görselleştirer
 
 ---
 
-### 🖼️ Uygulama Şeması
-<img src="./assets/Getiremmi_Datapipeline.png" alt="Uygulama Tasarımı" width="800" style="display: block; margin: auto;" />
+### ⚙️ Backend Mimarisi (Data Engine)
+Backend katmanımız, veriyi sadece depolamaz; `Gemini 1.5 Flash` entegrasyonu ile veriyi anlamlandırarak stratejik içgörüye dönüştürür.
+
+![Backend Sistem Mimarisi](./assets/Backendv1.png)
+
+### 🖥️ Frontend Mimarisi (Decision Support)
+Frontend katmanımız, backend'den gelen veriyi modüler bileşenler (React/TS) ile görselleştirir. Her modül, lojistik ve ticaret kararlarını desteklemek için özel olarak optimize edilmiştir.
+![Frontend Sistem Mimarisi](./assets/frontend.png)
 
 ### 🎥 Uygulama Tanıtım Videosu
 [▶️ Google Drive Tanıtım Videosu](https://drive.google.com/file/d/1LybLexOQIYUymIdgPKy_LxH4FuYACw3p/view?usp=sharing)
