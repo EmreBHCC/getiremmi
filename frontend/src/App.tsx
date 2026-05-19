@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Header from './components/Header';
-import Sidebar from './components/Sidebar';
 import DashboardPage from './pages/DashboardPage';
 import ComparisonsPage, { Urun } from './pages/ComparisonsPage';
 import MarketsPage from './pages/MarketsPage';
@@ -39,7 +38,6 @@ function App() {
     <div className="min-h-screen bg-slate-50 font-sans">
       <Header activePage={activePage} onNavigate={setActivePage} />
       <div className="flex">
-        {activePage === 'markets' && <Sidebar />}
         <main className="flex-1">
           {activePage === 'dashboard' && <DashboardPage />}
           {activePage === 'comparisons' && <ComparisonsPage onNavigate={setActivePage} onProductSelect={handleProductSelect} />}

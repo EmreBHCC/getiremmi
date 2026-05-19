@@ -2,7 +2,6 @@ import { Filter, Globe, Tag, Monitor, Calendar } from 'lucide-react';
 
 const filterItems = [
   { icon: Globe, label: 'Menşei', active: true },
-  { icon: Tag, label: 'Kategori', active: false },
   { icon: Monitor, label: 'Fiyatlandırma', active: false },
   { icon: Monitor, label: 'Platformlar', active: false },
   { icon: Calendar, label: 'Zaman Dilimi', active: false },
