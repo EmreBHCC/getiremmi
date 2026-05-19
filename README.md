@@ -161,7 +161,7 @@ Bu proje, **Getiremmi** uygulamasının kullanıcı arayüzünü (frontend) içe
 
 Projenin tasarım kaynaklarına, dokümantasyonlarına ve paylaşılan diğer kurumsal materyallere aşağıdaki bağlantıdan ulaşabilirsiniz:
 
-🔗 **[Getiremmi Google Drive Klasörü](BURAYA_GOOGLE_DRIVE_LINKINIZI_YAPISTIRIN)**
+🔗 **[Getiremmi Google Drive Klasörü]([Proje Videosu](https://drive.google.com/file/d/1WDb40VfZ4rCByJzQcrxeC_VpGNdq10GG/view?usp=sharing))**
 
 ---
 
