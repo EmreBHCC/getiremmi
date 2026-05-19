@@ -7,7 +7,6 @@ from bs4 import BeautifulSoup
 def yerel_html_wrapper(dosya_yolu):
     print(f"⚙️ Wrapper analiz ediyor: {os.path.basename(dosya_yolu)}")
 
-    try:
         with open(dosya_yolu, "r", encoding="utf-8") as f:
             html_icerik = f.read()
 
@@ -141,6 +140,3 @@ def yerel_html_wrapper(dosya_yolu):
             "yorumlar": toplu_yorum_metni
         }
 
-    except Exception as e:
-        print(f"❌ Wrapper hatası: {e}")
-        return None

@@ -13,7 +13,7 @@ export default function SettingsPage() {
       <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-3">
           
-          {/* Sol Menü */}
+          {}
           <div className="border-r border-slate-100 p-6 bg-slate-50/30">
             <nav className="space-y-2">
               <button className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl bg-teal-50 text-teal-700">
@@ -28,12 +28,12 @@ export default function SettingsPage() {
             </nav>
           </div>
 
-          {/* Sağ İçerik */}
+          {}
           <div className="col-span-2 p-8">
             <h2 className="text-lg font-bold text-slate-800 mb-6 border-b border-slate-100 pb-4">Genel Ayarlar</h2>
             
             <div className="space-y-6">
-              {/* Dil */}
+              {}
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="font-semibold text-slate-700">Dil Tercihi</h3>
@@ -45,7 +45,7 @@ export default function SettingsPage() {
                 </select>
               </div>
 
-              {/* Tema */}
+              {}
               <div className="flex items-center justify-between pt-6 border-t border-slate-100">
                 <div>
                   <h3 className="font-semibold text-slate-700">Karanlık Mod</h3>
@@ -56,7 +56,7 @@ export default function SettingsPage() {
                 </button>
               </div>
 
-              {/* Bölge */}
+              {}
               <div className="flex items-center justify-between pt-6 border-t border-slate-100">
                 <div>
                   <h3 className="font-semibold text-slate-700">Varsayılan Para Birimi</h3>
@@ -69,7 +69,7 @@ export default function SettingsPage() {
                 </select>
               </div>
 
-              {/* Kaydet */}
+              {}
               <div className="pt-8 flex justify-end">
                 <button className="px-6 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-semibold shadow-sm transition-colors">
                   Değişiklikleri Kaydet

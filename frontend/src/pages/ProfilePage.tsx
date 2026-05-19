@@ -11,7 +11,7 @@ export default function ProfilePage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Sol Kolon - Profil Kartı */}
+        {}
         <div className="lg:col-span-1 space-y-6">
           <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 flex flex-col items-center text-center">
             <div className="relative mb-4">
@@ -77,7 +77,7 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Sağ Kolon - Detaylar */}
+        {}
         <div className="lg:col-span-2 space-y-6">
           
           <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">

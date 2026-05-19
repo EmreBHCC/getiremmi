@@ -135,7 +135,7 @@ export default function CompetitorPage() {
 
   return (
     <div className="p-8 max-w-7xl mx-auto">
-      {/* Başlık */}
+      {}
       <div className="mb-8 flex items-start justify-between">
         <div>
           <div className="flex items-center gap-3 mb-1">
@@ -157,7 +157,7 @@ export default function CompetitorPage() {
         </button>
       </div>
 
-      {/* Kategori Seçimi */}
+      {}
       <div className="flex gap-2 mb-6">
         {categories.map((cat) => (
           <button
@@ -174,7 +174,7 @@ export default function CompetitorPage() {
         ))}
       </div>
 
-      {/* Özet */}
+      {}
       <div className="grid grid-cols-4 gap-4 mb-8">
         {[
           { label: 'En Düşük Fiyat', value: `${minPrice.toFixed(2)} ₺`, color: 'text-teal-600', bg: 'bg-teal-50', icon: <ArrowDownRight size={20} className="text-teal-600" /> },
@@ -194,7 +194,7 @@ export default function CompetitorPage() {
         ))}
       </div>
 
-      {/* Rakip Kartları */}
+      {}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
           <h2 className="text-sm font-semibold text-slate-900">
@@ -209,7 +209,7 @@ export default function CompetitorPage() {
             return (
               <div key={c.id} className={`px-6 py-5 hover:bg-slate-50/50 transition-colors ${isLowest ? 'border-l-4 border-l-teal-400' : ''}`}>
                 <div className="flex items-center gap-6">
-                  {/* Platform */}
+                  {}
                   <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center flex-shrink-0">
                     <Store size={18} className="text-slate-500" />
                   </div>
@@ -225,18 +225,18 @@ export default function CompetitorPage() {
                     <p className="text-xs text-slate-400">Güncellendi: {c.lastUpdated}</p>
                   </div>
 
-                  {/* Fiyat */}
+                  {}
                   <div className="text-right">
                     <p className="text-base font-bold text-slate-900">{c.price.toFixed(2)} ₺</p>
                     <PriceTrend trend={c.trend} change={Math.abs(change)} />
                   </div>
 
-                  {/* Stok */}
+                  {}
                   <div className="w-36">
                     <StockBar pct={c.stockPct} status={c.stockStatus} />
                   </div>
 
-                  {/* Rating */}
+                  {}
                   <div className="text-center">
                     <p className="text-sm font-bold text-slate-900">⭐ {c.rating}</p>
                     <p className="text-xs text-slate-400">Puan</p>

@@ -13,7 +13,7 @@ const modeConfig = {
     bg: 'bg-blue-50',
     border: 'border-blue-200',
     activeBg: 'bg-blue-600',
-    baseRate: 1.4, // USD per kg
+    baseRate: 1.4, 
     minDays: 18,
     maxDays: 35,
   },
@@ -76,7 +76,7 @@ export default function LogisticsPage() {
   const volumeNum = parseFloat(volume) || 0;
   const valueNum = parseFloat(value) || 0;
 
-  // Hacim ve ağırlık bazlı navlun fiyatlandırması (Kullanıcının formülü + mevcut katsayılar)
+  
   const basePrice = (weightNum * 0.5) + (volumeNum * 1.2);
   const freight = basePrice * cfg.baseRate * origin.multiplier;
   const insurance = valueNum * 0.0035;
@@ -91,7 +91,7 @@ export default function LogisticsPage() {
       setCalculated(true);
       setLoading(false);
 
-      // Arka planda Firebase'e kaydet (UI'ı bekletmemesi için await kullanılmıyor)
+      
       addDoc(collection(db, "logistics_calculations"), {
         weight: weightNum,
         volume: volumeNum,
@@ -103,12 +103,12 @@ export default function LogisticsPage() {
       }).catch(error => {
         console.error("Firebase kayıt hatası: ", error);
       });
-    }, 400); // UI tepkisi için küçük bir bekleme süresi
+    }, 400); 
   };
 
   return (
     <div className="p-8 max-w-5xl mx-auto">
-      {/* Başlık */}
+      {}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-1">
           <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center shadow">
@@ -122,10 +122,10 @@ export default function LogisticsPage() {
       </div>
 
       <div className="grid grid-cols-2 gap-8">
-        {/* Sol: Form */}
+        {}
         <div className="space-y-6">
           <div className={`space-y-6 ${loading ? 'pointer-events-none opacity-50' : ''}`}>
-            {/* Taşıma Modu */}
+            {}
           <div>
             <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Taşıma Modu</p>
             <div className="grid grid-cols-3 gap-2">
@@ -151,7 +151,7 @@ export default function LogisticsPage() {
             </div>
           </div>
 
-          {/* Menşe */}
+          {}
           <div>
             <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
               Menşe Ülke / Liman
@@ -167,7 +167,7 @@ export default function LogisticsPage() {
             </select>
           </div>
 
-          {/* Ağırlık, Hacim & Değer */}
+          {}
           <div className="grid grid-cols-3 gap-4">
             <div>
               <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
@@ -229,7 +229,7 @@ export default function LogisticsPage() {
           </button>
         </div>
 
-        {/* Sağ: Sonuçlar */}
+        {}
         <div>
           {calculated ? (
             <div className="space-y-4">

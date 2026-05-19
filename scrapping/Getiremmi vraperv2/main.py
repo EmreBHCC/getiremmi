@@ -49,12 +49,8 @@ def tam_otomasyon_sistemini_calistir():
 
     yeni_eklenen_sayisi = 0
     for link in toplanan_linkler:
-        try:
             cursor.execute("INSERT INTO urunler (link, durum) VALUES (?, 'bekliyor')", (link,))
             yeni_eklenen_sayisi += 1
-        except sqlite3.IntegrityError:
-            pass
-
     conn.commit()
     print(f"📦 Link havuzu güncellendi. {yeni_eklenen_sayisi} adet YENİ ürün sisteme eklendi.")
 
@@ -72,7 +68,6 @@ def tam_otomasyon_sistemini_calistir():
     options = uc.ChromeOptions()
     driver = uc.Chrome(options=options)
 
-    try:
         for sira, (urun_id, link) in enumerate(bekleyen_urunler, start=1):
             print(f"\n⚡ [{sira}/{len(bekleyen_urunler)}] İşlemdeki İndeks: {urun_id}")
 
@@ -112,14 +107,6 @@ def tam_otomasyon_sistemini_calistir():
                 print(f"😴 IP ban yememek için {bekleme:.1f} saniye bekleniyor...")
                 time.sleep(bekleme)
 
-    except Exception as genel_hata:
-        print(f"❌ Sistem çalışırken ana döngüde bir hata oluştu: {genel_hata}")
-    finally:
-        driver.quit()
-        conn.close()
-        print("\n🏁 Ana pipeline oturumu başarıyla sonlandırıldı.")
-
-
 def eksik_verileri_tamamla():
     """Sadece puanı, yorumu veya görseli eksik olan kayıtları bulup yamar."""
     conn = sqlite3.connect(DB_DOSYASI)
@@ -148,7 +135,6 @@ def eksik_verileri_tamamla():
 
     guncellenen_sayisi = 0
 
-    try:
         for sira, (urun_id, link, eski_puan, eski_yorum, eski_gorsel) in enumerate(eksik_kayitlar, start=1):
             print(f"\n🔄 [{sira}/{len(eksik_kayitlar)}] Eksik Taranıyor -> İndeks: {urun_id}")
 
@@ -206,14 +192,6 @@ def eksik_verileri_tamamla():
             if sira < len(eksik_kayitlar):
                 bekleme = random.uniform(4.0, 6.0)
                 time.sleep(bekleme)
-
-    except Exception as e:
-        print(f"💥 Kritik Sistem Hatası: {e}")
-    finally:
-        driver.quit()
-        conn.close()
-        print(f"\n🏁 YAMA İŞLEMİ BİTTİ! Toplam yamalanan/güncellenen ürün sayısı: {guncellenen_sayisi}")
-
 
 if __name__ == "__main__":
     # -----------------------------------------------------------------

@@ -13,7 +13,6 @@ def kategoriden_linkleri_topla(kategori_url):
 
     urun_linkleri = set()
 
-    try:
         print(f"🌐 Kategori sayfasına gidiliyor: {kategori_url}")
         driver.get(kategori_url)
         time.sleep(random.uniform(4.0, 6.0))
@@ -50,10 +49,4 @@ def kategoriden_linkleri_topla(kategori_url):
 
         print(f"🎯 Başarılı: Kategori sayfasından {len(urun_linkleri)} adet benzersiz ürün linki toplandı!")
         return list(urun_linkleri)
-
-    except Exception as e:
-        print(f"❌ Crawler link toplarken hata yaşadı: {e}")
-        return []
-    finally:
-        driver.quit()
-        print("🛑 Crawler tarayıcısı kapatıldı.")
+

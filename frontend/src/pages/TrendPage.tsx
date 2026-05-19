@@ -136,7 +136,7 @@ export default function TrendPage() {
 
   return (
     <div className="p-8 max-w-7xl mx-auto">
-      {/* Başlık */}
+      {}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-1">
           <div className="w-9 h-9 rounded-xl bg-violet-600 flex items-center justify-center shadow">
@@ -153,7 +153,7 @@ export default function TrendPage() {
         </p>
       </div>
 
-      {/* Özet Bilgi */}
+      {}
       <div className="bg-gradient-to-r from-violet-600 to-indigo-600 rounded-2xl p-6 mb-8 text-white shadow-lg">
         <div className="flex items-center justify-between">
           <div>
@@ -169,7 +169,7 @@ export default function TrendPage() {
         </div>
       </div>
 
-      {/* Sektör Kartları */}
+      {}
       <div className="grid grid-cols-1 gap-4">
         {groups.map((g) => {
           const tc = trendConfig[g.trend];
@@ -187,7 +187,7 @@ export default function TrendPage() {
             >
               <div className="p-5">
                 <div className="flex items-center gap-4">
-                  {/* Emoji & İsim */}
+                  {}
                   <div className="text-3xl w-12 h-12 flex items-center justify-center bg-slate-50 rounded-xl border border-slate-100">
                     {g.emoji}
                   </div>
@@ -202,7 +202,7 @@ export default function TrendPage() {
                     <ConfidenceBar value={g.confidence} />
                   </div>
 
-                  {/* Mini Grafik */}
+                  {}
                   <div className="flex-shrink-0">
                     <MiniChart values={chartValues} trend={g.trend} />
                     <div className="flex justify-between text-xs text-slate-400 mt-1" style={{ width: 120 }}>
@@ -211,7 +211,7 @@ export default function TrendPage() {
                     </div>
                   </div>
 
-                  {/* Değerler */}
+                  {}
                   <div className="text-right flex-shrink-0 w-24">
                     <p className="text-xl font-bold text-slate-900">{g.m3}</p>
                     <p className="text-xs text-slate-400">3. Ay Endeks</p>
@@ -227,7 +227,7 @@ export default function TrendPage() {
                 </div>
               </div>
 
-              {/* Açılan Detay */}
+              {}
               {isSelected && (
                 <div className="px-5 pb-5 pt-0">
                   <div className="border-t border-slate-100 pt-4">

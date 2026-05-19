@@ -118,7 +118,7 @@ export default function DashboardPage() {
         <p className="text-slate-500 text-sm">Gerçek zamanlı ticaret piyasası genel görünümü ve analitik.</p>
       </div>
 
-      {/* KPI Kartları */}
+      {}
       <div className="grid grid-cols-4 gap-4 mb-8">
         <DashboardCard
           title="Toplam Ticaret Hacmi"
@@ -153,7 +153,7 @@ export default function DashboardPage() {
         />
       </div>
 
-      {/* Grafik Satırı */}
+      {}
       <div className="grid grid-cols-2 gap-4 mb-8">
         <BarChart
           data={chartData.map((d) => ({
@@ -165,9 +165,9 @@ export default function DashboardPage() {
         <LineChart data={priceData} title="Emtia Fiyat Endeksi (6 Ay)" />
       </div>
 
-      {/* Alt Bölüm */}
+      {}
       <div className="grid grid-cols-3 gap-4">
-        {/* Öne Çıkan Emtialar */}
+        {}
         <div className="col-span-2">
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100">
@@ -223,7 +223,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Piyasa Uyarıları */}
+        {}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
           <div className="px-5 py-4 border-b border-slate-100">
             <h2 className="text-sm font-semibold text-slate-900">Piyasa Uyarıları</h2>

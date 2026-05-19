@@ -104,7 +104,7 @@ export default function CustomsPage() {
       if (gtipDatabase[trimmed]) {
         foundResult = gtipDatabase[trimmed];
       } else {
-        // Kullanıcının App.tsx'teki mock simülasyon mantığı (fallback)
+        
         let mockGtip: GtipResult = {
           code: trimmed,
           description: 'Sistem dışı simülasyon ürünü',
@@ -139,7 +139,7 @@ export default function CustomsPage() {
       setNotFound(isNotFound);
       setLoading(false);
 
-      // Arka planda Firebase'e kaydet (UI takılmaması için await yok)
+      
       addDoc(collection(db, "gtip_searches"), {
         gtipCode: trimmed,
         date: new Date().toISOString()
@@ -159,7 +159,7 @@ export default function CustomsPage() {
 
   return (
     <div className="p-8 max-w-5xl mx-auto">
-      {/* Başlık */}
+      {}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-1">
           <div className="w-9 h-9 rounded-xl bg-amber-500 flex items-center justify-center shadow">
@@ -172,7 +172,7 @@ export default function CustomsPage() {
         </p>
       </div>
 
-      {/* Arama */}
+      {}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-6">
         <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
           GTİP (Gümrük Tarife İstatistik Pozisyonu) Kodu
@@ -199,7 +199,7 @@ export default function CustomsPage() {
           </button>
         </div>
 
-        {/* Hızlı Seçimler */}
+        {}
         <div className={`mt-4 transition-opacity ${loading ? 'pointer-events-none opacity-50' : ''}`}>
           <p className="text-xs text-slate-400 mb-2">Örnek kodlar:</p>
           <div className="flex flex-wrap gap-2">
@@ -216,7 +216,7 @@ export default function CustomsPage() {
         </div>
       </div>
 
-      {/* Sonuç */}
+      {}
       {notFound && (
         <div className="bg-red-50 border border-red-200 rounded-2xl p-5 flex items-center gap-3">
           <XCircle size={20} className="text-red-500 flex-shrink-0" />
@@ -231,7 +231,7 @@ export default function CustomsPage() {
         const StatusIcon = sc.icon;
         return (
           <div className="space-y-4">
-            {/* Kod Başlık */}
+            {}
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
               <div className="flex items-start justify-between gap-4 mb-3">
                 <div>
@@ -247,7 +247,7 @@ export default function CustomsPage() {
               </div>
             </div>
 
-            {/* Vergi Oranları */}
+            {}
             <div className="grid grid-cols-3 gap-4">
               {[
                 { label: 'Gümrük Vergisi', value: `%${result.taxRate}`, color: result.taxRate > 15 ? 'text-red-600' : 'text-slate-900' },
@@ -261,7 +261,7 @@ export default function CustomsPage() {
               ))}
             </div>
 
-            {/* Kısıtlamalar */}
+            {}
             {result.restrictions.length > 0 && (
               <div className="bg-white rounded-2xl border border-amber-200 shadow-sm overflow-hidden">
                 <div className="px-5 py-3 bg-amber-50 border-b border-amber-100 flex items-center gap-2">
@@ -291,7 +291,7 @@ export default function CustomsPage() {
               </div>
             )}
 
-            {/* Notlar */}
+            {}
             {result.status !== 'banned' && (
               <div className="flex items-start gap-3 bg-blue-50 border border-blue-200 rounded-xl px-5 py-4">
                 <Info size={15} className="text-blue-600 mt-0.5 flex-shrink-0" />

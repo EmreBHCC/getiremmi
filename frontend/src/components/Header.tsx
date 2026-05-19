@@ -54,7 +54,7 @@ export default function Header({ activePage, onNavigate }: HeaderProps) {
 
   return (
     <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
-      {/* Üst satır: Logo + Ana Nav + Aksiyonlar */}
+      {}
       <div className="flex items-center h-14 px-6 gap-6">
         <div className="flex items-center gap-2 flex-shrink-0">
           <img src="/logo.png" alt="Getiremmi Logo" className="h-8 w-auto object-contain" />
@@ -79,7 +79,7 @@ export default function Header({ activePage, onNavigate }: HeaderProps) {
             </button>
           ))}
 
-          {/* Araçlar Dropdown */}
+          {}
           <div className="relative" ref={toolsRef}>
             <button
               onClick={() => setIsToolsOpen(!isToolsOpen)}
@@ -137,10 +137,10 @@ export default function Header({ activePage, onNavigate }: HeaderProps) {
           </div>
         )}
 
-        {/* Sağ Aksiyonlar */}
+        {}
         <div className="flex items-center gap-3 flex-shrink-0 relative" ref={actionsRef}>
           
-          {/* Bildirimler Butonu */}
+          {}
           <button 
             onClick={() => toggleDropdown('notifications')}
             className={`relative p-2 rounded-lg transition-colors ${openDropdown === 'notifications' ? 'bg-teal-50 text-teal-600' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-100'}`} 
@@ -150,7 +150,7 @@ export default function Header({ activePage, onNavigate }: HeaderProps) {
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 border-2 border-white rounded-full" />
           </button>
 
-          {/* Bildirimler Dropdown */}
+          {}
           {openDropdown === 'notifications' && (
             <div className="absolute top-full right-16 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-200 z-50 overflow-hidden transform origin-top-right transition-all">
               <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
@@ -197,9 +197,9 @@ export default function Header({ activePage, onNavigate }: HeaderProps) {
             </div>
           )}
 
-          {/* Settings icon and dropdown completely removed, moved to Profile menu */}
+          {}
 
-          {/* Profil Butonu */}
+          {}
           <button 
             onClick={() => toggleDropdown('profile')}
             className={`w-8 h-8 rounded-full overflow-hidden ring-2 transition-all ${activePage === 'profile' || openDropdown === 'profile' ? 'ring-teal-500 ring-offset-2' : 'ring-slate-200 hover:ring-slate-300'}`}
@@ -211,7 +211,7 @@ export default function Header({ activePage, onNavigate }: HeaderProps) {
             />
           </button>
 
-          {/* Profil Dropdown */}
+          {}
           {openDropdown === 'profile' && (
             <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-200 z-50 overflow-hidden">
               <div className="p-5 border-b border-slate-100 bg-gradient-to-r from-teal-50/50 to-white">

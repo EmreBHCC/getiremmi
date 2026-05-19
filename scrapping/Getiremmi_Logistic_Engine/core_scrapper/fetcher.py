@@ -13,7 +13,6 @@ def sayfayi_guzelce_indir(driver, url, dosya_adi, depo_klasoru="html_depo"):
 
     kayit_yolu = os.path.join(depo_klasoru, dosya_adi)
 
-    try:
         driver.get(url)
         time.sleep(random.uniform(3.0, 5.0))
 
@@ -36,11 +35,6 @@ def sayfayi_guzelce_indir(driver, url, dosya_adi, depo_klasoru="html_depo"):
             f.write(html_kaynagi)
 
         return kayit_yolu
-    except Exception as e:
-        print(f"❌ Sayfa indirilirken hata oluştu: {e}")
-        return None
-
-
 def gorsel_indir(gorsel_url, urun_id, klasor="urun_gorselleri"):
     if not gorsel_url or gorsel_url == "Görsel yok":
         return "Görsel yok"
@@ -48,7 +42,6 @@ def gorsel_indir(gorsel_url, urun_id, klasor="urun_gorselleri"):
     if not os.path.exists(klasor):
         os.makedirs(klasor)
 
-    try:
         uzanti = ".jpg"
         if ".png" in gorsel_url.lower():
             uzanti = ".png"
@@ -61,7 +54,4 @@ def gorsel_indir(gorsel_url, urun_id, klasor="urun_gorselleri"):
             with open(kayit_yolu, 'wb') as f:
                 f.write(cevap.content)
             return kayit_yolu
-    except Exception as e:
-        print(f"⚠️ Görsel indirilemedi: {e}")
-
     return "Görsel indirilemedi"

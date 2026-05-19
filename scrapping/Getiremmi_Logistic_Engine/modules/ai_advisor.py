@@ -20,19 +20,13 @@ def generate_ai_assistant_comment():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     export_dir = os.path.join(base_dir, "export_outputs")
 
-    try:
         with open(os.path.join(export_dir, "competitor_data.json"), "r", encoding="utf-8") as f:
             competitor_data = json.load(f)
         with open(os.path.join(export_dir, "trend_forecast.json"), "r", encoding="utf-8") as f:
             trend_data = json.load(f)
-    except Exception as e:
-        print(f"❌ Yapay zeka analiz dosyalarını bulamadı: {e}")
-        return
-
     # Kendi API key'ini buraya tırnak içine koy kanka!
     GEMINI_API_KEY = "AIzaSyDryKOz4hlO355aY0ugvCp8gV4ZmTqgK0I"
 
-    try:
         client = genai.Client(api_key=GEMINI_API_KEY)
 
         # 🎯 KOTA VE MODEL FIX: Kota aşımını engellemek için kararlı 'gemini-1.5-pro' modeline çekiyoruz
@@ -75,18 +69,6 @@ def generate_ai_assistant_comment():
             json.dump(comment_data, f, ensure_ascii=False, indent=4)
         print(f"✅ [SUCCESS] AI Lojistik ve Ürün Yorumu yazıldı ──► {output_file}")
         return comment_data
-
-    except Exception as ai_error:
-        print(f"❌ Gemini analizi esnasında kota veya auth hatası: {ai_error}")
-        # Kota patlarsa React çökmesin diye yedek güvenli çıktı üret kanka
-        fallback_comment = {
-            "asistan_lojistik_yorumu": "Haziran ve Temmuz aylarında gıda ve oyuncak lojistiğinde %45 talep artışı öngörülüyor. Maersk Line rotalarında navlun maliyet avantajı sabitlenmiştir.",
-            "yapay_zeka_urun_yorumu": "Son kazınan Marvel serisi ürünlerin stok durumları 'Sınırlı kargo sevkiyatı' kategorisinde olup, gümrük geçiş evraklarının önceliklendirilmesi önerilir."
-        }
-        with open(os.path.join(export_dir, "ai_advisor_comment.json"), "w", encoding="utf-8") as f:
-            json.dump(fallback_comment, f, ensure_ascii=False, indent=4)
-        return fallback_comment
-
 
 if __name__ == "__main__":
     generate_ai_assistant_comment()

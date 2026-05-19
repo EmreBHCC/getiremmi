@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import type { Page } from '../App';
 
-/* ---------- Types ---------- */
+
 export interface Urun {
   id: number;
   link: string;
@@ -28,7 +28,7 @@ export interface Urun {
   kategori: string;
 }
 
-/* ---------- Helpers ---------- */
+
 function parseRating(raw: string): number | null {
   if (!raw || raw === 'Puan bulunamadı') return null;
   const m = raw.match(/[\d.]+/);
@@ -37,7 +37,7 @@ function parseRating(raw: string): number | null {
 
 function parsePriceTRY(raw: string): number | null {
   if (!raw || raw === 'Fiyat bulunamadı') return null;
-  // e.g. "TRY300.74", "TRY1,653.14", "TRY 965.39"
+  
   const clean = raw.replace(/[^0-9.,]/g, '').replace(',', '');
   const num = parseFloat(clean);
   return isNaN(num) ? null : num;
@@ -87,7 +87,7 @@ function StarRating({ rating }: { rating: number | null }) {
   );
 }
 
-/* ---------- Category pill ---------- */
+
 const CATEGORY_ICONS: Record<string, string> = {
   'Tümü': '🔍',
   'Marvel & DC': '🦸',
@@ -99,7 +99,7 @@ const CATEGORY_ICONS: Record<string, string> = {
   'Diğer Figürler': '🤖',
 };
 
-/* ---------- Compare Panel ---------- */
+
 function ComparePanel({
   selected,
   onRemove,
@@ -197,7 +197,7 @@ function ComparePanel({
   );
 }
 
-/* ---------- Product Card ---------- */
+
 function UrunKarti({
   urun,
   isSelected,
@@ -223,7 +223,7 @@ function UrunKarti({
           : 'border-slate-200 hover:border-slate-300 hover:shadow-md shadow-sm'
         }`}
     >
-      {/* Görsel */}
+      {}
       <div className="relative h-44 bg-slate-50 overflow-hidden">
         {urun.gorsel_url ? (
           <img
@@ -239,13 +239,13 @@ function UrunKarti({
             <Package size={40} className="text-slate-300" />
           </div>
         )}
-        {/* Kategori badge */}
+        {}
         <div className="absolute top-2 left-2">
           <span className="text-xs bg-white/90 backdrop-blur-sm text-slate-600 px-2 py-0.5 rounded-full border border-slate-200 font-medium">
             {CATEGORY_ICONS[urun.kategori] ?? '📦'} {urun.kategori}
           </span>
         </div>
-        {/* Seç butonu */}
+        {}
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -264,18 +264,18 @@ function UrunKarti({
         </button>
       </div>
 
-      {/* İçerik */}
+      {}
       <div className="p-4">
         <h3 className="text-sm font-semibold text-slate-800 line-clamp-2 mb-2 min-h-[2.5rem]">
           {urun.urun_adi}
         </h3>
 
-        {/* Puan */}
+        {}
         <div className="mb-2">
           <StarRating rating={rating} />
         </div>
 
-        {/* Fiyat */}
+        {}
         <div className="mb-3">
           {price !== null ? (
             <span className="text-lg font-bold text-slate-900">
@@ -286,7 +286,7 @@ function UrunKarti({
           )}
         </div>
 
-        {/* Stok */}
+        {}
         <div className="flex items-center justify-between">
           <StockBadge stok={urun.stok_durumu} />
           <a
@@ -304,7 +304,7 @@ function UrunKarti({
   );
 }
 
-/* ---------- Main Page ---------- */
+
 export default function ComparisonsPage({ 
   onNavigate,
   onProductSelect
@@ -322,19 +322,19 @@ export default function ComparisonsPage({
   const [sortBy, setSortBy] = useState<'default' | 'fiyat_asc' | 'fiyat_desc' | 'puan'>('default');
   const [showSort, setShowSort] = useState(false);
 
-  // Kategorileri yükle
+  
   useEffect(() => {
     fetch('/api/kategoriler')
       .then((r) => r.json())
       .then((data) => {
-        // API returns [{ad, gorsel_url}] — extract only the name string
+        
         const names: string[] = (data.kategoriler as { ad: string }[]).map((k) => k.ad);
         setKategoriler(['Tümü', ...names]);
       })
       .catch(console.error);
   }, []);
 
-  // Ürünleri yükle
+  
   const fetchUrunler = useCallback(() => {
     setYukleniyor(true);
     const params = new URLSearchParams({ limit: '100', offset: '0' });
@@ -353,7 +353,7 @@ export default function ComparisonsPage({
     fetchUrunler();
   }, [fetchUrunler]);
 
-  // Seçim yönetimi
+  
   const toggleSelect = (urun: Urun) => {
     if (selectedIds.includes(urun.id)) {
       setSelectedIds((prev) => prev.filter((id) => id !== urun.id));
@@ -364,7 +364,7 @@ export default function ComparisonsPage({
     }
   };
 
-  // Filtreleme + arama + sıralama
+  
   const filtered = urunler
     .filter((u) =>
       u.urun_adi.toLowerCase().includes(searchQuery.toLowerCase())
@@ -397,7 +397,7 @@ export default function ComparisonsPage({
 
   return (
     <div className="min-h-screen bg-slate-50 pb-40">
-      {/* Başlık */}
+      {}
       <div className="bg-white border-b border-slate-200 px-8 py-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -426,7 +426,7 @@ export default function ComparisonsPage({
 
       <div className="max-w-7xl mx-auto px-8 py-6 space-y-6">
 
-        {/* Arama + Sıralama */}
+        {}
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -447,7 +447,7 @@ export default function ComparisonsPage({
             )}
           </div>
 
-          {/* Sort dropdown */}
+          {}
           <div className="relative">
             <button
               onClick={() => setShowSort((v) => !v)}
@@ -473,7 +473,7 @@ export default function ComparisonsPage({
           </div>
         </div>
 
-        {/* Sonuç sayısı */}
+        {}
         <div className="flex items-center gap-2">
           <span className="text-sm text-slate-500">
             <span className="font-semibold text-slate-700">{filtered.length}</span> ürün bulundu
@@ -483,7 +483,7 @@ export default function ComparisonsPage({
           </span>
         </div>
 
-        {/* Ürün grid */}
+        {}
         {yukleniyor ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {Array.from({ length: 10 }).map((_, i) => (
@@ -519,7 +519,7 @@ export default function ComparisonsPage({
         )}
       </div>
 
-      {/* Compare panel (fixed bottom) */}
+      {}
       <ComparePanel selected={selectedUrunler} onRemove={(id) => {
         setSelectedIds((prev) => prev.filter((i) => i !== id));
         setSelectedUrunler((prev) => prev.filter((u) => u.id !== id));

@@ -53,7 +53,6 @@ def gorselleri_fiziksel_olarak_indir_ve_numaralandir():
             if img_tag and img_tag.get('src'):
                 img_url = img_tag['src']
 
-                try:
                     print(f"📥 İndiriliyor: Ürün ID {u_id} -> {dosya_adi}")
                     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
                     response = requests.get(img_url, headers=headers, stream=True, timeout=10)
@@ -78,9 +77,6 @@ def gorselleri_fiziksel_olarak_indir_ve_numaralandir():
                         print(f"❌ İndirme başarısız (HTTP {response.status_code}): ID {u_id}")
                         basarisiz += 1
 
-                except Exception as e:
-                    print(f"❌ Görsel indirme hatası (ID {u_id}): {e}")
-                    basarisiz += 1
             else:
                 print(f"❌ HTML içinde görsel linki bulunamadı: ID {u_id}")
                 basarisiz += 1

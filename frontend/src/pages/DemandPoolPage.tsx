@@ -108,7 +108,7 @@ export default function DemandPoolPage() {
 
   return (
     <div className="p-8 max-w-7xl mx-auto">
-      {/* Başlık */}
+      {}
       <div className="mb-8 flex items-start justify-between">
         <div>
           <div className="flex items-center gap-3 mb-1">
@@ -130,7 +130,7 @@ export default function DemandPoolPage() {
         </button>
       </div>
 
-      {/* Özet */}
+      {}
       <div className="grid grid-cols-3 gap-4 mb-8">
         <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex items-center gap-4">
           <div className="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center">
@@ -161,7 +161,7 @@ export default function DemandPoolPage() {
         </div>
       </div>
 
-      {/* Arama */}
+      {}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
         <div className="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
           <Search size={16} className="text-slate-400" />
@@ -173,7 +173,7 @@ export default function DemandPoolPage() {
         </div>
       </div>
 
-      {/* Talepler */}
+      {}
       <div className="space-y-3">
         {demands.map((d) => {
           const sc = statusConfig[d.status];
@@ -216,7 +216,7 @@ export default function DemandPoolPage() {
         })}
       </div>
 
-      {/* Modal Form */}
+      {}
       {showForm && (
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">

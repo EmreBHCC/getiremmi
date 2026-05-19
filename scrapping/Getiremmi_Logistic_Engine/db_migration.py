@@ -6,7 +6,6 @@ def parse_price_to_float(raw: str) -> float | None:
     if not raw or not isinstance(raw, str):
         return None
 
-    try:
         # Kur sembollerini ve binlik ayracı olan virgülü temizle
         clean_str = raw.replace("TRY", "").replace("$", "").replace("£", "").replace(",", "").strip()
 
@@ -15,11 +14,6 @@ def parse_price_to_float(raw: str) -> float | None:
             return None
 
         return float(clean_str)
-    except ValueError:
-        # float() dönüştürme başarısız olursa exception fırlatma, sessizce None dön
-        return None
-
-
 # 2 & 3. GÖREV: Migration ve Tek Seferlik Update İşlemi
 def migrate_prices(db_path="urunler_veritabani.db"):
     print("🛠️ Veritabanı Migration işlemi başlatılıyor...")
@@ -30,18 +24,10 @@ def migrate_prices(db_path="urunler_veritabani.db"):
 
     # --- MIGRATION: Kolonları Ekleme ---
     # SQLite'da ALTER TABLE tek seferde birden fazla kolon eklemeyi desteklemez, ayrı ayrı ekliyoruz.
-    try:
         cursor.execute("ALTER TABLE urunler ADD COLUMN fiyat_ham TEXT;")
         print("✅ 'fiyat_ham' (TEXT) kolonu eklendi.")
-    except sqlite3.OperationalError:
-        print("⚠️ 'fiyat_ham' kolonu zaten mevcut, geçiliyor.")
-
-    try:
         cursor.execute("ALTER TABLE urunler ADD COLUMN fiyat_float REAL;")
         print("✅ 'fiyat_float' (REAL) kolonu eklendi.")
-    except sqlite3.OperationalError:
-        print("⚠️ 'fiyat_float' kolonu zaten mevcut, geçiliyor.")
-
     # --- UPDATE: Mevcut 24 Kaydı Normalize Edip Güncelleme ---
     print("🔄 Mevcut kayıtlar okunuyor ve dönüştürülüyor...")
     cursor.execute("SELECT id, fiyat FROM urunler")

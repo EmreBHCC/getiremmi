@@ -34,11 +34,11 @@ export default function MarketsPage({ urun }: MarketsPageProps) {
     );
   }
 
-  // Generate dynamic sellers based on the selected product
+  
   const basePriceStr = urun.fiyat.replace(/[^0-9.,]/g, '').replace(',', '.');
   const basePrice = parseFloat(basePriceStr) || 1000;
   
-  // Extract rating or default to 4.5
+  
   const ratingMatch = urun.yorum_puani?.match(/[\d.]+/);
   const baseRating = ratingMatch ? parseFloat(ratingMatch[0]) : 4.5;
 
@@ -55,7 +55,7 @@ export default function MarketsPage({ urun }: MarketsPageProps) {
     {
       name: 'Amazon',
       type: 'Yurt Dışı',
-      price: parseFloat(((basePrice / exchangeRates['$']) * 0.92).toFixed(2)), // ~8% cheaper
+      price: parseFloat(((basePrice / exchangeRates['$']) * 0.92).toFixed(2)), 
       currency: '$',
       likes: Math.floor(Math.random() * 10000) + 1000,
       rating: Math.min(5, baseRating + 0.2),
@@ -64,7 +64,7 @@ export default function MarketsPage({ urun }: MarketsPageProps) {
     {
       name: 'Alibaba',
       type: 'Yurt Dışı',
-      price: parseFloat(((basePrice / exchangeRates['$']) * 0.85).toFixed(2)), // ~15% cheaper
+      price: parseFloat(((basePrice / exchangeRates['$']) * 0.85).toFixed(2)), 
       currency: '$',
       likes: Math.floor(Math.random() * 20000) + 2000,
       rating: Math.max(1, baseRating - 0.3),
@@ -84,7 +84,7 @@ export default function MarketsPage({ urun }: MarketsPageProps) {
 
   return (
     <div className="p-8 max-w-5xl mx-auto">
-      {/* Header */}
+      {}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-slate-900 mb-1">Ürün Analizi & Karşılaştırma</h1>
         <p className="text-slate-500 text-sm">
@@ -93,7 +93,7 @@ export default function MarketsPage({ urun }: MarketsPageProps) {
       </div>
 
       <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-        {/* Product Header */}
+        {}
         <div className="p-8 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white flex items-center gap-8">
           <div className="w-32 h-32 rounded-2xl overflow-hidden shadow-sm bg-white border border-slate-200 flex items-center justify-center flex-shrink-0">
             {urun.gorsel_url ? (
@@ -119,7 +119,7 @@ export default function MarketsPage({ urun }: MarketsPageProps) {
             </div>
           </div>
           
-          {/* Cheapest Badge */}
+          {}
           <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-5 text-center min-w-[200px] flex-shrink-0">
             <p className="text-sm font-medium text-emerald-600 mb-1">En Uygun Fiyat</p>
             <p className="text-2xl font-bold text-emerald-700">
@@ -131,7 +131,7 @@ export default function MarketsPage({ urun }: MarketsPageProps) {
           </div>
         </div>
 
-        {/* Detailed Comparison Table/Cards */}
+        {}
         <div className="p-8 bg-slate-50/50">
           <h3 className="text-lg font-semibold text-slate-800 mb-5">Piyasa Satıcı Karşılaştırması</h3>
           <div className="grid grid-cols-1 gap-4">
@@ -150,7 +150,7 @@ export default function MarketsPage({ urun }: MarketsPageProps) {
                      </div>
                   )}
 
-                  {/* Seller Info */}
+                  {}
                   <div className="w-56 flex-shrink-0 flex items-center gap-4 border-r border-slate-100 pr-6">
                     <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center flex-shrink-0 border border-slate-100">
                       {getSellerIcon(seller.icon)}
@@ -165,7 +165,7 @@ export default function MarketsPage({ urun }: MarketsPageProps) {
                     </div>
                   </div>
 
-                  {/* Price Info */}
+                  {}
                   <div className="flex-1 flex items-center gap-8 px-2">
                     <div className="flex-1">
                       <p className="text-xs text-slate-400 font-medium mb-1 uppercase tracking-wider">Satış Fiyatı</p>
@@ -179,7 +179,7 @@ export default function MarketsPage({ urun }: MarketsPageProps) {
                       )}
                     </div>
 
-                    {/* Likes/Popularity */}
+                    {}
                     <div className="flex-1">
                       <p className="text-xs text-slate-400 font-medium mb-1 uppercase tracking-wider">Popülerlik</p>
                       <div className="flex items-center gap-2">
@@ -190,7 +190,7 @@ export default function MarketsPage({ urun }: MarketsPageProps) {
                       </div>
                     </div>
 
-                    {/* Rating */}
+                    {}
                     <div className="flex-1">
                       <p className="text-xs text-slate-400 font-medium mb-1 uppercase tracking-wider">Satıcı Puanı</p>
                       <div className="flex items-center gap-1.5">
@@ -200,7 +200,7 @@ export default function MarketsPage({ urun }: MarketsPageProps) {
                     </div>
                   </div>
 
-                  {/* Action */}
+                  {}
                   <div className="pl-6 border-l border-slate-100">
                     <button className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
                       isCheapest 
@@ -217,7 +217,7 @@ export default function MarketsPage({ urun }: MarketsPageProps) {
         </div>
       </div>
 
-      {/* Additional Analysis Alert */}
+      {}
       <div className="mt-6 bg-blue-50 border border-blue-100 rounded-2xl p-5 flex gap-4 items-start shadow-sm">
         <div className="bg-blue-100 p-2.5 rounded-xl text-blue-600 mt-0.5">
           <TrendingDown size={24} />

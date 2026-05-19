@@ -19,7 +19,6 @@ def migrate_to_unique_link(db_path="urunler_veritabani.db"):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    try:
         # Transaction başlat
         cursor.execute("BEGIN TRANSACTION;")
 
@@ -59,13 +58,6 @@ def migrate_to_unique_link(db_path="urunler_veritabani.db"):
 
         conn.commit()
         print("✅ Migration başarılı: Tablo artık production-ready ve 'link' kolonu UNIQUE!")
-    except Exception as e:
-        conn.rollback()
-        print(f"❌ Migration sırasında hata oluştu: {e}")
-    finally:
-        conn.close()
-
-
 # =====================================================================
 # 2. GÖREV: fetcher.py / main.py İçin INSERT OR REPLACE Mantığı
 # =====================================================================
@@ -99,16 +91,9 @@ def ornek_urun_kaydet_veya_guncelle(db_path, urun_data):
         guncel_tarih  # Python tarafında üretilen tazelik damgası
     )
 
-    try:
         cursor.execute(sorgu, degerler)
         conn.commit()
         print(f"✅ Ürün UPSERT edildi: {urun_data['link']}")
-    except Exception as e:
-        print(f"❌ Kayıt hatası: {e}")
-    finally:
-        conn.close()
-
-
 if __name__ == "__main__":
     # Sadece migration'ı çalıştır
     migrate_to_unique_link()

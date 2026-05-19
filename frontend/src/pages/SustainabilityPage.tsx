@@ -150,7 +150,7 @@ export default function SustainabilityPage() {
         </p>
       </div>
 
-      {/* Özet Kartları */}
+      {}
       <div className="grid grid-cols-3 gap-4 mb-8">
         <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex items-center gap-4">
           <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center">
@@ -181,7 +181,7 @@ export default function SustainabilityPage() {
         </div>
       </div>
 
-      {/* Ürün Tablosu */}
+      {}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
           <h2 className="text-sm font-semibold text-slate-900">Ürün Karbon & Sertifika Raporu</h2>
@@ -193,10 +193,10 @@ export default function SustainabilityPage() {
             return (
               <div key={p.id} className="px-6 py-5 hover:bg-slate-50/50 transition-colors">
                 <div className="flex items-center gap-6">
-                  {/* Skor */}
+                  {}
                   <ScoreBadge score={p.score} />
 
-                  {/* Ürün Bilgisi */}
+                  {}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <p className="text-sm font-semibold text-slate-900">{p.name}</p>
@@ -211,7 +211,7 @@ export default function SustainabilityPage() {
                     <CarbonBar level={p.carbonLevel} kg={p.carbonKg} />
                   </div>
 
-                  {/* Sertifikalar */}
+                  {}
                   <div className="flex flex-wrap gap-1.5 justify-end max-w-xs">
                     {p.certs.map((c) => (
                       <span
@@ -229,7 +229,7 @@ export default function SustainabilityPage() {
         </div>
       </div>
 
-      {/* Bilgi Notu */}
+      {}
       <div className="mt-6 flex items-start gap-3 bg-teal-50 border border-teal-200 rounded-xl px-5 py-4">
         <Info size={16} className="text-teal-600 mt-0.5 flex-shrink-0" />
         <p className="text-xs text-teal-700">

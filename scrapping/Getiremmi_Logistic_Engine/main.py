@@ -33,7 +33,6 @@ def process_real_scraped_data():
         print(f"📂 Gerçek veritabanı bağlandı: {db_path}")
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        try:
             # Migration'dan gelen fiyat_float varsa onu da öncelikli alabilirsin, şimdilik standart sorgu
             cursor.execute("SELECT id, urun_adi, fiyat, stok_durumu, yerel_gorsel_yolu FROM urunler")
             rows = cursor.fetchall()
@@ -69,11 +68,6 @@ def process_real_scraped_data():
                     "gemi": f"M/V Logistic-{u_id}",
                     "gorsel": temiz_gorsel
                 })
-        except Exception as e:
-            raise Exception(f"SQLite Okuma Hatası: {e}")
-        finally:
-            conn.close()
-
     with open(os.path.join(output_dir, "competitor_data.json"), "w", encoding="utf-8") as f:
         json.dump(competitor_data, f, ensure_ascii=False, indent=4)
     print("✅ [SUCCESS] Canlı otomasyon verileri yazıldı!")
@@ -96,13 +90,8 @@ def build_firebase_ready_bundle(pipeline_status):
                 pipeline_status[status_key] = "missing"
             return default_value
 
-        try:
             with open(filepath, "r", encoding="utf-8") as f:
                 return json.load(f)
-        except Exception as e:
-            pipeline_status[status_key] = f"parse error: {str(e)}"
-            return default_value
-
     # Her veriyi try/except izolasyonuyla güvenli okuma
     comp = safe_load("competitor_data.json", [], "competitor_data")
     trend = safe_load("trend_forecast.json", [], "trend_forecast")
@@ -124,15 +113,10 @@ def build_firebase_ready_bundle(pipeline_status):
         }
     }
 
-    try:
         bundle_file = os.path.join(export_dir, "firebase_ready_bundle.json")
         with open(bundle_file, "w", encoding="utf-8") as f:
             json.dump(firebase_bundle, f, ensure_ascii=False, indent=4)
         print(f"👑 [FİNAL ZAFERİ] İzole edilmiş Firebase Paketi Hazır! ──► {bundle_file}")
-    except Exception as e:
-        print(f"❌ Firebase bundle paketi diske yazılamadı: {e}")
-
-
 if __name__ == "__main__":
     print("\n" + "═" * 60)
     print("🚀 FAULT-TOLERANT LIVE DATA PIPELINE BAŞLATILDI...")
@@ -147,35 +131,19 @@ if __name__ == "__main__":
     }
 
     # 1. ADIM: Gerçek Veri Kazıma Entegrasyonu
-    try:
         process_real_scraped_data()
-    except Exception as e:
-        print(f"⚠️ [ATLANDI] Veritabanı işleme hatası: {e}")
-        status["competitor_data"] = f"error: {str(e)}"
     time.sleep(0.5)
 
     # 2. ADIM: Regresyon Modeli
-    try:
         generate_trend_forecast()
-    except Exception as e:
-        print(f"⚠️ [ATLANDI] Trend motoru hatası: {e}")
-        status["trend_forecast"] = f"error: {str(e)}"
     time.sleep(0.5)
 
     # 3. ADIM: SKA ve Karbon Hesaplama
-    try:
         generate_sustainability_report()
-    except Exception as e:
-        print(f"⚠️ [ATLANDI] Sürdürülebilirlik hesaplama hatası: {e}")
-        status["sustainability"] = f"error: {str(e)}"
     time.sleep(0.5)
 
     # 4. ADIM: Gemini AI Asistanı
-    try:
         generate_ai_assistant_comment()
-    except Exception as e:
-        print(f"⚠️ [ATLANDI] Gemini AI Asistan hatası: {e}")
-        status["ai_advisor"] = f"error: {str(e)}"
     time.sleep(0.5)
 
     # 5. ADIM: Güvenli Paketleyici

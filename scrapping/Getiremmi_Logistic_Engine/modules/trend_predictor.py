@@ -16,12 +16,7 @@ def parse_price(raw_price):
     if not raw_price:
         return 0
     clean = str(raw_price).replace("TRY", "").replace("$", "").replace("£", "").replace(",", "").strip()
-    try:
         return float(clean)
-    except ValueError:
-        return 0
-
-
 def generate_trend_forecast():
     print("🧠 [Predictive AI] Gerçek Veri Tabanlı Regresyon Motoru çalışıyor...")
 
@@ -42,7 +37,6 @@ def generate_trend_forecast():
     if db_path:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        try:
             # Kolonları kontrol et (Migration yapılmış mı?)
             cursor.execute("PRAGMA table_info(urunler)")
             columns = [info[1] for info in cursor.fetchall()]
@@ -74,11 +68,6 @@ def generate_trend_forecast():
 
                 if val > 0:
                     monthly_data[month_key].append(val)
-
-        except Exception as e:
-            print(f"❌ Veritabanı okuma hatası: {e}")
-        finally:
-            conn.close()
 
     # 2. AYLIK ORTALAMALARI HESAPLAMA
     sorted_months = sorted(monthly_data.keys())
@@ -164,9 +153,4 @@ def generate_trend_forecast():
 
 if __name__ == "__main__":
     # Konsolda numpy kurulu değilse diye ufak bir uyarıcı test
-    try:
-        import numpy
-    except ImportError:
-        print("⚠️ Numpy kütüphanesi eksik. Lütfen 'pip install numpy' komutunu çalıştırın.")
-    else:
-        generate_trend_forecast()
+        import numpy
